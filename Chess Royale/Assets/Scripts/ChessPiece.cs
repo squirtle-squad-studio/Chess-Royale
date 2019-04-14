@@ -10,7 +10,7 @@ public class ChessPiece : MonoBehaviour
 
     private void Start()
     {
-        
+        location = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z);
     }
     public List<Vector2Int> GetPossibleMoves()
     {
@@ -21,7 +21,7 @@ public class ChessPiece : MonoBehaviour
             {
                 if(element.y + location.y >= 0 && element.y + location.y < 8)
                 {
-                    possibleMoves.Add(element);
+                    possibleMoves.Add(new Vector2Int(element.x + location.x, element.y + location.y));
                 }
             }
         }
@@ -45,7 +45,9 @@ public class ChessPiece : MonoBehaviour
                     if (cursor == element)
                     {
                         moveAble = true;
-                        location = cursor;
+                        //location = cursor;
+                        location.x = cursor.x;
+                        location.y = cursor.y;
                         transform.position = new Vector3(cursor.x, 1, -1 * cursor.y);
 
                         Debug.Log("(" + location.x + "," + location.y + ")");

@@ -49,9 +49,11 @@ public class GameManager : MonoBehaviour
         //Testing Displays possible move from the given selected piece
         if (selectedPiece != null)
         {
+            Debug.Log("Location"+selectedPiece.location);
             List<Vector2Int> possibleMove = selectedPiece.GetPossibleMoves();
             foreach (Vector2Int element in possibleMove)
             {
+                Debug.Log("PossibleMove"+element);
                 // This doesn't seem that efficient because it keeps setting true and changing color every frame
                 selectionBoard[element.x + 8 * element.y].SetActive(true);
                 selectionBoard[element.x + 8 * element.y].GetComponent<ColorChanger>().SetToBlue();
