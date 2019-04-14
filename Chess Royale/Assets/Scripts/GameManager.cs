@@ -28,10 +28,7 @@ public class GameManager : MonoBehaviour
         state = GameState.check4Check;
 
         // Disables all selection cubes in selectionBoard except the starting one
-        foreach(GameObject cube in selectionBoard)
-        {
-            cube.SetActive(false);
-        }
+        ClearSelectionBoard();
         SetSelectionBoardToYellow(cursor);
     }
 
