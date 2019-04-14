@@ -52,8 +52,7 @@ public class GameManager : MonoBehaviour
             foreach (Vector2Int element in possibleMove)
             {
                 // This doesn't seem that efficient because it keeps setting true and changing color every frame
-                selectionBoard[element.x + 8 * element.y].SetActive(true);
-                selectionBoard[element.x + 8 * element.y].GetComponent<ColorChanger>().SetToBlue();
+                SetSelectionBoardToBlue(element);
             }
             SetSelectionBoardToGreen(selectedPiece.location);
         }
