@@ -28,10 +28,6 @@ public class ChessPiece : MonoBehaviour
         return possibleMoves;
     }
 
-    /**
-     * Bug: Range Out of Bounds exception
-     * 
-     * */
     public void Move(Vector2Int cursor)
     {
         if (location != cursor)

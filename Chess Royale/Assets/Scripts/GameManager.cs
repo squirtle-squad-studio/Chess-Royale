@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    enum GameState { check4Check, selectPiece1, getPossibleMove, selectPiece2, move, nextPlayer};
+    enum GameState { check4Check, selectPiece1, getPossibleMove, selectPiece2, move, nextPlayer}; // Currently unused
 
     // Game State
     GameState state;
     public List<GameObject> selectionBoard; // This is a single list taken from a 8x8 board
-    public Horse horse; // Testing
+    public Horse horse; // Testing 
     private bool waitForInput;
     private bool check;
 
@@ -32,44 +32,37 @@ public class GameManager : MonoBehaviour
         {
             cube.SetActive(false);
         }
-        selectionBoard[cursor.x + 8 * cursor.y].SetActive(true);
-        selectionBoard[cursor.x + 8 * cursor.y].GetComponent<ColorChanger>().SetToYellow();
+        SetSelectionBoardToYellow(cursor);
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdatePicture();
+        GraphicsUpdate();
         GetInput();
         UpdateState();
     }
 
-    private void UpdatePicture()
+    private void GraphicsUpdate()
     {
         //Testing Displays possible move from the given selected piece
         if (selectedPiece != null)
         {
-            Debug.Log("Location"+selectedPiece.location);
             List<Vector2Int> possibleMove = selectedPiece.GetPossibleMoves();
             foreach (Vector2Int element in possibleMove)
             {
-                Debug.Log("PossibleMove"+element);
                 // This doesn't seem that efficient because it keeps setting true and changing color every frame
                 selectionBoard[element.x + 8 * element.y].SetActive(true);
                 selectionBoard[element.x + 8 * element.y].GetComponent<ColorChanger>().SetToBlue();
             }
-            selectionBoard[selectedPiece.location.x + 8 * selectedPiece.location.y].SetActive(true);
-            selectionBoard[selectedPiece.location.x + 8 * selectedPiece.location.y].GetComponent<ColorChanger>().SetToGreen();
+            SetSelectionBoardToGreen(selectedPiece.location);
         }
+        RemovePreviousCursor();
+        SetSelectionBoardToYellow(cursor);
 
-        //if(cursor != prevCursor)
-        //{
-            selectionBoard[prevCursor.x + 8 * prevCursor.y].SetActive(false);
-            selectionBoard[cursor.x + 8 * cursor.y].SetActive(true);
-            selectionBoard[cursor.x + 8 * cursor.y].GetComponent<ColorChanger>().SetToYellow();
-        //}
         prevCursor = cursor; // Updates the prevCursor
     }
+
     private void GetInput() {
         if(Input.GetKeyUp(KeyCode.W))
         {
@@ -109,19 +102,21 @@ public class GameManager : MonoBehaviour
             }
             if(selectedPiece != null)
             {
-                //Debug.Log("Return pressed");
                 selectedPiece.Move(cursor);
-                ClearBoard();
+                ClearSelectionBoard();
             }
         }
         if(Input.GetKeyUp(KeyCode.Escape))
         {
-            ClearBoard();
-            selectionBoard[cursor.x + 8 * cursor.y].SetActive(true);
-            selectionBoard[cursor.x + 8 * cursor.y].GetComponent<ColorChanger>().SetToYellow();
+            ClearSelectionBoard();
+            SetSelectionBoardToYellow(cursor);
             selectedPiece = null; // TEST
         }
     }
+
+    /**
+     * Planned to use this as game logic
+     * */
     private void UpdateState()
     {
         // Testing Moving piece
@@ -156,11 +151,49 @@ public class GameManager : MonoBehaviour
     private List<Vector2> SelectPiece() { return null; }
     private void NextPlayer() { }
 
-    private void ClearBoard()
+    /**
+     * Deactivates all the SelectionBoard elements.
+     * */
+    private void ClearSelectionBoard()
     {
         foreach(GameObject element in selectionBoard)
         {
             element.SetActive(false);
         }
+    }
+
+    /**
+     * Deactivates the previous cursor to prevent trails as the cursor moves
+     * */
+    private void RemovePreviousCursor()
+    {
+        selectionBoard[prevCursor.x + 8 * prevCursor.y].SetActive(false);
+    }
+
+    /**
+     * Sets the the selected Vector to the Yellow
+     * */
+    private void SetSelectionBoardToYellow(Vector2Int v)
+    {
+        selectionBoard[v.x + 8 * v.y].SetActive(true);
+        selectionBoard[v.x + 8 * v.y].GetComponent<ColorChanger>().SetToYellow();
+    }
+
+    /**
+    * Sets the the selected Vector to the Blue
+    * */
+    private void SetSelectionBoardToBlue(Vector2Int v)
+    {
+        selectionBoard[v.x + 8 * v.y].SetActive(true);
+        selectionBoard[v.x + 8 * v.y].GetComponent<ColorChanger>().SetToBlue();
+    }
+
+    /**
+    * Sets the the selected Vector to the Green
+    * */
+    private void SetSelectionBoardToGreen(Vector2Int v)
+    {
+        selectionBoard[v.x + 8 * v.y].SetActive(true);
+        selectionBoard[v.x + 8 * v.y].GetComponent<ColorChanger>().SetToGreen();
     }
 }
