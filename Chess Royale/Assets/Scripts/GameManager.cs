@@ -151,7 +151,6 @@ public class GameManager : MonoBehaviour
             List<Vector2Int> possibleMove = selectedPiece.GetPossibleMoves();
             foreach (Vector2Int element in possibleMove)
             {
-                // This doesn't seem that efficient because it keeps setting true and changing color every frame
                 SetSelectionBoardToBlue(element);
             }
             SetSelectionBoardToGreen(selectedPiece.location);
