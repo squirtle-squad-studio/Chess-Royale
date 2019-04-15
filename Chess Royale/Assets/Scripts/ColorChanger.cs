@@ -34,6 +34,7 @@ public class ColorChanger : MonoBehaviour
                 return "Green";
                 break;
             default:
+                Debug.Log("Color Not Found");
                 return "null";
         }
     }

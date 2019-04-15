@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         cursor = new Vector2Int(0,0);
         state = GameState.check4Check;
 
+
         InitiateSelectionBoardHelper();
         InitiateSelectionBoardColorArray();
 
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour
                 cursor.x += 1;
             }
         }
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKeyUp(KeyCode.Return))
         {
             // testing purpose
             // Checks if cursor selects a valid piece
@@ -93,9 +94,10 @@ public class GameManager : MonoBehaviour
             {
                 selectedPiece = horse;
             }
-            if(selectedPiece != null)
+            else if(selectedPiece != null)
             {
                 selectedPiece.Move(cursor);
+                selectedPiece = null;
                 ClearSelectionBoard();
             }
         }
