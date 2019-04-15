@@ -20,6 +20,24 @@ public class ColorChanger : MonoBehaviour
         SetToBlue();
     }
 
+    public string GetColor()
+    {
+        switch(currentColor)
+        {
+            case color.yellow:
+                return "Yellow";
+                break;
+            case color.blue:
+                return "Blue";
+                break;
+            case color.green:
+                return "Green";
+                break;
+            default:
+                return "null";
+        }
+    }
+
     public void SetToBlue()
     {
         if (currentColor != color.blue)

@@ -213,8 +213,14 @@ public class GameManager : MonoBehaviour
      * */
     private void SetSelectionBoardToYellow(Vector2Int v)
     {
-        selectionBoardHelper[v.x, v.y].SetActive(true);
-        selectionBoardColorArray[v.x, v.y].SetToYellow();
+        if(!selectionBoardColorArray[v.x, v.y].GetColor().Equals("Yellow"))
+        {
+            selectionBoardColorArray[v.x, v.y].SetToYellow();
+        }
+        if (selectionBoardHelper[v.x, v.y].activeSelf == false)
+        {
+            selectionBoardHelper[v.x, v.y].SetActive(true);
+        }
     }
 
     /**
@@ -222,8 +228,14 @@ public class GameManager : MonoBehaviour
     * */
     private void SetSelectionBoardToBlue(Vector2Int v)
     {
-        selectionBoardHelper[v.x , v.y].SetActive(true);
-        selectionBoardColorArray[v.x, v.y].SetToBlue();
+        if (!selectionBoardColorArray[v.x, v.y].GetColor().Equals("Blue"))
+        {
+            selectionBoardColorArray[v.x, v.y].SetToBlue();
+        }
+        if (selectionBoardHelper[v.x, v.y].activeSelf == false)
+        {
+            selectionBoardHelper[v.x, v.y].SetActive(true);
+        }
     }
 
     /**
@@ -231,7 +243,13 @@ public class GameManager : MonoBehaviour
     * */
     private void SetSelectionBoardToGreen(Vector2Int v)
     {
-        selectionBoardHelper[v.x , v.y].SetActive(true);
-        selectionBoardColorArray[v.x, v.y].SetToGreen();
+        if (!selectionBoardColorArray[v.x, v.y].GetColor().Equals("Green"))
+        {
+            selectionBoardColorArray[v.x, v.y].SetToGreen();
+        }
+        if (selectionBoardHelper[v.x, v.y].activeSelf == false)
+        {
+            selectionBoardHelper[v.x, v.y].SetActive(true);
+        }
     }
 }
