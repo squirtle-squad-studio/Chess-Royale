@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour
 
     // Game State
     GameState state;
-    public List<GameObject> selectionBoard; // This is a single list taken from a 8x8 board
+    public List<GameObject> selectionBoard; // This is a single list taken from a 8x8 board. Advice: please use the helper variable, it's easier.
+    private GameObject[,] selectionBoardHelper; // selectionBoard but in 2D array
+    private ColorChanger[,] selectionBoardColorArray; // selectionBoard but in 2D array
+
     public Horse horse; // Testing 
     private bool waitForInput;
     private bool check;
@@ -27,6 +30,9 @@ public class GameManager : MonoBehaviour
         cursor = new Vector2Int(0,0);
         state = GameState.check4Check;
 
+        InitiateSelectionBoardHelper();
+        InitiateSelectionBoardColorArray();
+
         // Disables all selection cubes in selectionBoard except the starting one
         ClearSelectionBoard();
         SetSelectionBoardToYellow(cursor);
@@ -42,22 +48,13 @@ public class GameManager : MonoBehaviour
 
     private void GraphicsUpdate()
     {
-        //Testing Displays possible move from the given selected piece
-        if (selectedPiece != null)
-        {
-            List<Vector2Int> possibleMove = selectedPiece.GetPossibleMoves();
-            foreach (Vector2Int element in possibleMove)
-            {
-                // This doesn't seem that efficient because it keeps setting true and changing color every frame
-                SetSelectionBoardToBlue(element);
-            }
-            SetSelectionBoardToGreen(selectedPiece.location);
-        }
+        DisplayPossibleMoveFromSelectedPiece();
         RemovePreviousCursor();
         SetSelectionBoardToYellow(cursor);
 
         prevCursor = cursor; // Updates the prevCursor
     }
+
 
     private void GetInput() {
         if(Input.GetKeyUp(KeyCode.W))
@@ -106,7 +103,7 @@ public class GameManager : MonoBehaviour
         {
             ClearSelectionBoard();
             SetSelectionBoardToYellow(cursor);
-            selectedPiece = null; // TEST
+            selectedPiece = null;
         }
     }
 
@@ -147,6 +144,51 @@ public class GameManager : MonoBehaviour
     private List<Vector2> SelectPiece() { return null; }
     private void NextPlayer() { }
 
+    private void DisplayPossibleMoveFromSelectedPiece()
+    {
+        if (selectedPiece != null)
+        {
+            List<Vector2Int> possibleMove = selectedPiece.GetPossibleMoves();
+            foreach (Vector2Int element in possibleMove)
+            {
+                // This doesn't seem that efficient because it keeps setting true and changing color every frame
+                SetSelectionBoardToBlue(element);
+            }
+            SetSelectionBoardToGreen(selectedPiece.location);
+        }
+    }
+
+     /**
+     * Creates an 2D array of color from a single list
+     * This list is necessary to avoid calling GetComponent() every frame
+     * */
+    private void InitiateSelectionBoardColorArray()
+    {
+        selectionBoardColorArray = new ColorChanger[8, 8];
+        for (int row = 0; row < 8; row++)
+        {
+            for (int col = 0; col < 8; col++)
+            {
+                selectionBoardColorArray[row, col] = selectionBoard[row + 8 * col].GetComponent<ColorChanger>();
+            }
+        }
+    }
+
+    /**
+     * Creates an 2D array from a single list
+     * */
+    private void InitiateSelectionBoardHelper()
+    {
+        selectionBoardHelper = new GameObject[8, 8];
+        for (int row = 0; row < 8; row++)
+        {
+            for (int col = 0; col < 8; col++)
+            {
+                selectionBoardHelper[row, col] = selectionBoard[row + 8 * col];
+            }
+        }
+    }
+
     /**
      * Deactivates all the SelectionBoard elements.
      * */
@@ -163,7 +205,8 @@ public class GameManager : MonoBehaviour
      * */
     private void RemovePreviousCursor()
     {
-        selectionBoard[prevCursor.x + 8 * prevCursor.y].SetActive(false);
+        if(selectionBoardHelper[prevCursor.x , prevCursor.y].activeSelf == true)
+            selectionBoardHelper[prevCursor.x, prevCursor.y].SetActive(false);
     }
 
     /**
@@ -171,8 +214,8 @@ public class GameManager : MonoBehaviour
      * */
     private void SetSelectionBoardToYellow(Vector2Int v)
     {
-        selectionBoard[v.x + 8 * v.y].SetActive(true);
-        selectionBoard[v.x + 8 * v.y].GetComponent<ColorChanger>().SetToYellow();
+        selectionBoardHelper[v.x, v.y].SetActive(true);
+        selectionBoardColorArray[v.x, v.y].SetToYellow();
     }
 
     /**
@@ -180,8 +223,8 @@ public class GameManager : MonoBehaviour
     * */
     private void SetSelectionBoardToBlue(Vector2Int v)
     {
-        selectionBoard[v.x + 8 * v.y].SetActive(true);
-        selectionBoard[v.x + 8 * v.y].GetComponent<ColorChanger>().SetToBlue();
+        selectionBoardHelper[v.x , v.y].SetActive(true);
+        selectionBoardColorArray[v.x, v.y].SetToBlue();
     }
 
     /**
@@ -189,7 +232,7 @@ public class GameManager : MonoBehaviour
     * */
     private void SetSelectionBoardToGreen(Vector2Int v)
     {
-        selectionBoard[v.x + 8 * v.y].SetActive(true);
-        selectionBoard[v.x + 8 * v.y].GetComponent<ColorChanger>().SetToGreen();
+        selectionBoardHelper[v.x , v.y].SetActive(true);
+        selectionBoardColorArray[v.x, v.y].SetToGreen();
     }
 }
