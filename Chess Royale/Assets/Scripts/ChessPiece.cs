@@ -12,6 +12,8 @@ public class ChessPiece : MonoBehaviour
     {
         location = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z);
     }
+    // This Method GetPossibleMoves() needs to be moved to ChessBoard class as a method
+    // Reason: We need to take in to account of other pieces on the board to figure out the possible moves
     public List<Vector2Int> GetPossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
@@ -46,7 +48,7 @@ public class ChessPiece : MonoBehaviour
                         location.y = cursor.y;
                         transform.position = new Vector3(cursor.x, 1, -1 * cursor.y);
 
-                        Debug.Log("(" + location.x + "," + location.y + ")");
+                        // Debug.Log("(" + location.x + "," + location.y + ")");
                     }
                 }
             }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Horse : ChessPiece
+public class Knight : ChessPiece
 {
     private void Start()
     {
-        name = "Horse";
+        name = "Knight";
         moves.Add(new Vector2Int(-1, 2));
         moves.Add(new Vector2Int(-1, -2));
         moves.Add(new Vector2Int(1, 2));
