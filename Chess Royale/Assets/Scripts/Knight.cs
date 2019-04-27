@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Knight : ChessPiece
 {
-    private void Start()
+    protected void Start()
     {
+        base.Start();
         name = "Knight";
         moves.Add(new Vector2Int(-1, 2));
         moves.Add(new Vector2Int(-1, -2));

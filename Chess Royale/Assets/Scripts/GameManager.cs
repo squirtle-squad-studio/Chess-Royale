@@ -82,7 +82,10 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                selectedPiece.Move(cursor);
+                if(chessBoard.GeneratePossibleMoves(selectedPiece).Contains(cursor))
+                {
+                    selectedPiece.Move(cursor); // This shouldn't be allowed because we need to verify that move from ChessBoard class
+                }
                 selectedPiece = null;
                 chessBoard.ClearSelectionBoard();
             }

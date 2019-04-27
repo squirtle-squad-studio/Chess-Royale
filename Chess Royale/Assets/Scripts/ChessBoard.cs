@@ -55,7 +55,7 @@ public class ChessBoard : MonoBehaviour
     {
         listOfChessPieces = cp;
         chessPieces = new ChessPiece[8, 8];
-        foreach(ChessPiece element in cp)
+        foreach (ChessPiece element in cp)
         {
             chessPieces[element.location.x, element.location.y] = element;
         }
@@ -63,11 +63,11 @@ public class ChessBoard : MonoBehaviour
 
     private void UpdateBoard()
     {
-        for(int row = 0; row < 8; row++)
+        for (int row = 0; row < 8; row++)
         {
-            for(int col = 0; col < 8; col ++)
+            for (int col = 0; col < 8; col++)
             {
-                chessPieces[col , row] = null;
+                chessPieces[col, row] = null;
             }
         }
         foreach (ChessPiece element in listOfChessPieces)
@@ -84,6 +84,7 @@ public class ChessBoard : MonoBehaviour
 
     public void DisplayPossibleMoveFromSelectedPiece(ChessPiece selectedPiece)
     {
+        /*
         if (selectedPiece != null)
         {
             List<Vector2Int> possibleMove = selectedPiece.GetPossibleMoves();
@@ -92,6 +93,58 @@ public class ChessBoard : MonoBehaviour
                 SetTileToBlueAt(element);
             }
             SetTileToGreenAt(selectedPiece.location);
+        }
+        */
+        if (selectedPiece != null)
+        {
+            List<Vector2Int> possibleMoves = GeneratePossibleMoves(selectedPiece);
+            foreach (Vector2Int element in possibleMoves)
+            {
+                // Sets the color of SelectionBoard
+                if(chessPieces[element.x,element.y] == null)
+                {
+                    SetTileToBlueAt(element);
+                }
+                else
+                {
+                    // So far any pieces will be red, but in the future we should not include friendly meaning
+                    SetTileToRedAt(element);
+                }
+            }
+            SetTileToGreenAt(selectedPiece.location);
+        }
+    }
+    /*
+     * Helper function for DisplayPossibleMoveeFromSelectedPIece(ChessPiece)
+     */
+    public List<Vector2Int> GeneratePossibleMoves(ChessPiece selectedPiece)
+    {
+        Vector2Int location = selectedPiece.location;
+        List<Vector2Int> moves = selectedPiece.moves;
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
+        Vector2Int move;
+
+        // Only include moves that are in the bounds of the board
+        for (int i = 0; i < moves.Count; i++)
+        {
+            move = location + moves[i];
+            if (move.x >=0 && move.x < 8 && move.y >= 0 && move.y <8)
+            {
+                possibleMoves.Add(move);
+            }
+        }
+
+        // Specific to pieces
+        switch (selectedPiece.name)
+        {
+            case "Knight":
+                return possibleMoves;
+                break;
+            case "Rook":
+                return possibleMoves;
+                break;
+            default:
+                return null;
         }
     }
 
@@ -102,7 +155,7 @@ public class ChessBoard : MonoBehaviour
     {
         foreach (GameObject element in selectionBoard)
         {
-            if(element.activeSelf)
+            if (element.activeSelf)
             {
                 element.SetActive(false);
             }
@@ -153,6 +206,17 @@ public class ChessBoard : MonoBehaviour
         if (!selectionBoardColorArray[v.x, v.y].GetColor().Equals("Green"))
         {
             selectionBoardColorArray[v.x, v.y].SetToGreen();
+        }
+        if (selectionBoardHelper[v.x, v.y].activeSelf == false)
+        {
+            selectionBoardHelper[v.x, v.y].SetActive(true);
+        }
+    }
+    public void SetTileToRedAt(Vector2Int v)
+    {
+        if (!selectionBoardColorArray[v.x, v.y].GetColor().Equals("Red"))
+        {
+            selectionBoardColorArray[v.x, v.y].SetToRed();
         }
         if (selectionBoardHelper[v.x, v.y].activeSelf == false)
         {

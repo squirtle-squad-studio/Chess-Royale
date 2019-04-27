@@ -7,8 +7,9 @@ public class ColorChanger : MonoBehaviour
     public Material transparentYellow;
     public Material transparentBlue;
     public Material transparentGreen;
+    public Material transparentRed;
 
-    enum color {yellow, blue, green };
+    enum color {yellow, blue, green, red};
     color currentColor;
 
     MeshRenderer meshRenderer;
@@ -33,6 +34,8 @@ public class ColorChanger : MonoBehaviour
             case color.green:
                 return "Green";
                 break;
+            case color.red:
+                return "Red";
             default:
                 Debug.Log("Color Not Found");
                 return "null";
@@ -63,6 +66,14 @@ public class ColorChanger : MonoBehaviour
         {
             meshRenderer.material.SetColor("_Color", transparentGreen.color);
             currentColor = color.green;
+        }
+    }
+    public void SetToRed()
+    {
+        if (currentColor != color.red)
+        {
+            meshRenderer.material.SetColor("_Color", transparentRed.color);
+            currentColor = color.red;
         }
     }
 
