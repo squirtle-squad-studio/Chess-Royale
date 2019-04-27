@@ -8,8 +8,9 @@ public class ChessPiece : MonoBehaviour
     public Vector2Int location;
     public List<Vector2Int> moves;
 
-    private void Start()
+    protected void Start()
     {
+        Debug.Log("Start Called");
         location = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z);
     }
     // This Method GetPossibleMoves() needs to be moved to ChessBoard class as a method
