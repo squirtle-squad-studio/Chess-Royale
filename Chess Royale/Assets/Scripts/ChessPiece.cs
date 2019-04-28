@@ -8,7 +8,7 @@ public class ChessPiece : MonoBehaviour
     public Vector2Int location;
     public List<Vector2Int> moves;
 
-    protected void Start()
+    protected virtual void Start()
     {
         location = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z);
     }

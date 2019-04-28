@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Knight : ChessPiece
 {
-    protected void Start()
+    protected override void Start()
     {
         base.Start();
         name = "Knight";

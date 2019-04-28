@@ -84,17 +84,6 @@ public class ChessBoard : MonoBehaviour
 
     public void DisplayPossibleMoveFromSelectedPiece(ChessPiece selectedPiece)
     {
-        /*
-        if (selectedPiece != null)
-        {
-            List<Vector2Int> possibleMove = selectedPiece.GetPossibleMoves();
-            foreach (Vector2Int element in possibleMove)
-            {
-                SetTileToBlueAt(element);
-            }
-            SetTileToGreenAt(selectedPiece.location);
-        }
-        */
         if (selectedPiece != null)
         {
             List<Vector2Int> possibleMoves = GeneratePossibleMoves(selectedPiece);
@@ -141,7 +130,79 @@ public class ChessBoard : MonoBehaviour
                 return possibleMoves;
                 break;
             case "Rook":
-                return possibleMoves;
+                List<Vector2Int> temp = new List<Vector2Int>();
+                // Code to detect pieces
+                // As soon as it detects a piece on it's path, it will stop
+                for(int i = 1; i < 8; i++)
+                {
+
+                    if (possibleMoves.Contains(new Vector2Int(location.x, location.y + i)))
+                    {
+                        temp.Add(new Vector2Int(location.x, location.y + i));
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    if(chessPieces[location.x, location.y + i] != null)
+                    {
+                        break;
+                    }
+                }
+                for (int i = 1; i < 8; i++)
+                {
+
+                    if (possibleMoves.Contains(new Vector2Int(location.x+i, location.y)))
+                    {
+                        temp.Add(new Vector2Int(location.x+i, location.y));
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    if (chessPieces[location.x+i, location.y] != null)
+                    {
+                        break;
+                    }
+                }
+                for (int i = 1; i < 8; i++)
+                {
+
+                    if (possibleMoves.Contains(new Vector2Int(location.x, location.y - i)))
+                    {
+                        temp.Add(new Vector2Int(location.x, location.y - i));
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    if (chessPieces[location.x, location.y - i] != null)
+                    {
+                        break;
+                    }
+                }
+                for (int i = 1; i < 8; i++)
+                {
+
+                    if (possibleMoves.Contains(new Vector2Int(location.x - i, location.y)))
+                    {
+                        temp.Add(new Vector2Int(location.x - i, location.y));
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    if (chessPieces[location.x - i, location.y] != null)
+                    {
+                        break;
+                    }
+                }
+
+                return temp;
                 break;
             default:
                 return null;
