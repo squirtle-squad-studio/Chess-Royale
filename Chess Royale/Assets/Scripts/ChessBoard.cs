@@ -19,92 +19,8 @@ public class ChessBoard : MonoBehaviour
         InitiateAndFillChessPieces(cp);
     }
 
-
-    /**
-    * Creates an 2D array from a single list
-    * */
-    private void InitiateSelectionBoardHelper()
-    {
-        selectionBoardHelper = new GameObject[8, 8];
-        for (int row = 0; row < 8; row++)
-        {
-            for (int col = 0; col < 8; col++)
-            {
-                selectionBoardHelper[row, col] = selectionBoard[row + 8 * col];
-            }
-        }
-    }
-
-    /**
-    * Creates an 2D array of color from a single list
-    * This list is necessary to avoid calling GetComponent() every frame
-    * */
-    private void InitiateSelectionBoardColorArray()
-    {
-        selectionBoardColorArray = new ColorChanger[8, 8];
-        for (int row = 0; row < 8; row++)
-        {
-            for (int col = 0; col < 8; col++)
-            {
-                selectionBoardColorArray[row, col] = selectionBoard[row + 8 * col].GetComponent<ColorChanger>();
-            }
-        }
-    }
-
-    private void InitiateAndFillChessPieces(List<ChessPiece> cp)
-    {
-        listOfChessPieces = cp;
-        chessPieces = new ChessPiece[8, 8];
-        foreach (ChessPiece element in cp)
-        {
-            chessPieces[element.location.x, element.location.y] = element;
-        }
-    }
-
-    private void UpdateBoard()
-    {
-        for (int row = 0; row < 8; row++)
-        {
-            for (int col = 0; col < 8; col++)
-            {
-                chessPieces[col, row] = null;
-            }
-        }
-        foreach (ChessPiece element in listOfChessPieces)
-        {
-            chessPieces[element.location.x, element.location.y] = element;
-        }
-    }
-
-    public ChessPiece GetPiece(Vector2Int v)
-    {
-        UpdateBoard();
-        return chessPieces[v.x, v.y];
-    }
-
-    public void DisplayPossibleMoveFromSelectedPiece(ChessPiece selectedPiece)
-    {
-        if (selectedPiece != null)
-        {
-            List<Vector2Int> possibleMoves = GeneratePossibleMoves(selectedPiece);
-            foreach (Vector2Int element in possibleMoves)
-            {
-                // Sets the color of SelectionBoard
-                if(chessPieces[element.x,element.y] == null)
-                {
-                    SetTileToBlueAt(element);
-                }
-                else
-                {
-                    // So far any pieces will be red, but in the future we should not include friendly meaning
-                    SetTileToRedAt(element);
-                }
-            }
-            SetTileToGreenAt(selectedPiece.location);
-        }
-    }
     /*
-     * Helper function for DisplayPossibleMoveeFromSelectedPIece(ChessPiece)
+     * Use this method to find the possible moves from a given chess piece.
      */
     public List<Vector2Int> GeneratePossibleMoves(ChessPiece selectedPiece)
     {
@@ -132,7 +48,7 @@ public class ChessBoard : MonoBehaviour
             case "Rook":
                 List<Vector2Int> temp = new List<Vector2Int>();
                 // Code to detect pieces
-                // As soon as it detects a piece on it's path, it will stop
+                // As soon as it detects a piece on it's path, it will stop looking for the next
                 for(int i = 1; i < 8; i++)
                 {
 
@@ -208,6 +124,102 @@ public class ChessBoard : MonoBehaviour
                 return null;
         }
     }
+
+    public ChessPiece GetPiece(Vector2Int v)
+    {
+        UpdateBoard();
+        return chessPieces[v.x, v.y];
+    }
+
+    //-----------------------------------------------------------------------
+    // Methods below are for initializing Variables
+    // Most likely only used once
+    //-----------------------------------------------------------------------
+
+    /**
+    * Creates an 2D array from a single list
+    * */
+    private void InitiateSelectionBoardHelper()
+    {
+        selectionBoardHelper = new GameObject[8, 8];
+        for (int row = 0; row < 8; row++)
+        {
+            for (int col = 0; col < 8; col++)
+            {
+                selectionBoardHelper[row, col] = selectionBoard[row + 8 * col];
+            }
+        }
+    }
+
+    /**
+    * Creates an 2D array of color from a single list
+    * This list is necessary to avoid calling GetComponent() every frame
+    * */
+    private void InitiateSelectionBoardColorArray()
+    {
+        selectionBoardColorArray = new ColorChanger[8, 8];
+        for (int row = 0; row < 8; row++)
+        {
+            for (int col = 0; col < 8; col++)
+            {
+                selectionBoardColorArray[row, col] = selectionBoard[row + 8 * col].GetComponent<ColorChanger>();
+            }
+        }
+    }
+
+    private void InitiateAndFillChessPieces(List<ChessPiece> cp)
+    {
+        listOfChessPieces = cp;
+        chessPieces = new ChessPiece[8, 8];
+        foreach (ChessPiece element in cp)
+        {
+            chessPieces[element.location.x, element.location.y] = element;
+        }
+    }
+
+    private void UpdateBoard()
+    {
+        for (int row = 0; row < 8; row++)
+        {
+            for (int col = 0; col < 8; col++)
+            {
+                chessPieces[col, row] = null;
+            }
+        }
+        foreach (ChessPiece element in listOfChessPieces)
+        {
+            chessPieces[element.location.x, element.location.y] = element;
+        }
+    }
+
+
+
+    //-----------------------------------------------------------------------
+    // Methods below are for displaying the selection squares
+    //-----------------------------------------------------------------------
+
+    public void DisplayPossibleMoveFromSelectedPiece(ChessPiece selectedPiece)
+    {
+        if (selectedPiece != null)
+        {
+            List<Vector2Int> possibleMoves = GeneratePossibleMoves(selectedPiece);
+            foreach (Vector2Int element in possibleMoves)
+            {
+                // Sets the color of SelectionBoard
+                if(chessPieces[element.x,element.y] == null)
+                {
+                    SetTileToBlueAt(element);
+                }
+                else
+                {
+                    // So far any pieces will be red, but in the future we should not include friendly meaning
+                    SetTileToRedAt(element);
+                }
+            }
+            SetTileToGreenAt(selectedPiece.location);
+        }
+    }
+
 
     /**
     * Deactivates all the SelectionBoard elements.
