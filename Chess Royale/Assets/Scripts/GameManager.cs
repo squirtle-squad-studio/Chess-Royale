@@ -43,7 +43,43 @@ public class GameManager : MonoBehaviour
 
 
     private void GetInput() {
-        if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+
+        //-----------------------------------------------------------------------
+        // These two if statements are the most important to focus on.
+        
+        if (Input.GetKeyUp(KeyCode.Return))
+        {
+            if (selectedPiece == null)
+            {
+                if (chessBoard.GetPiece(cursor) != null)
+                {
+                    selectedPiece = chessBoard.GetPiece(cursor);
+                }
+            }
+            else
+            {
+                if(chessBoard.GeneratePossibleMoves(selectedPiece).Contains(cursor))
+                {
+                    selectedPiece.Move(cursor);
+                }
+                selectedPiece = null;
+                chessBoard.ClearSelectionBoard();
+            }
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            chessBoard.ClearSelectionBoard();
+            chessBoard.SetTileToYellowAt(cursor);
+            selectedPiece = null;
+        }
+
+        //
+        //-----------------------------------------------------------------------
+
+
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             if(cursor.y - 1 >= 0 && cursor.y - 1 < 8)
             {
@@ -70,32 +106,6 @@ public class GameManager : MonoBehaviour
             {
                 cursor.x += 1;
             }
-        }
-        if (Input.GetKeyUp(KeyCode.Return))
-        {
-            if(selectedPiece == null)
-            {
-                if (chessBoard.GetPiece(cursor) != null)
-                {
-                    selectedPiece = chessBoard.GetPiece(cursor);
-                }
-            }
-            else
-            {
-                if(chessBoard.GeneratePossibleMoves(selectedPiece).Contains(cursor))
-                {
-                    selectedPiece.Move(cursor); // This shouldn't be allowed because we need to verify that move from ChessBoard class
-                }
-                selectedPiece = null;
-                chessBoard.ClearSelectionBoard();
-            }
-
-        }
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            chessBoard.ClearSelectionBoard();
-            chessBoard.SetTileToYellowAt(cursor);
-            selectedPiece = null;
         }
     }
 

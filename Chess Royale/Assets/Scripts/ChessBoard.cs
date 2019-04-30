@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChessBoard : MonoBehaviour
+public class ChessBoard
 {
     private List<GameObject> selectionBoard;
     private List<ChessPiece> listOfChessPieces; // Actual Chess Pieces
