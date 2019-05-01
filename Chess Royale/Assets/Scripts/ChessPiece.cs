@@ -10,7 +10,7 @@ public class ChessPiece : MonoBehaviour
 
     protected virtual void Start()
     {
-        location = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z);
+        location = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z * -1);
     }
 
     public void Move(Vector2Int cursor)
