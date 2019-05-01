@@ -23,14 +23,15 @@ Simple Chess game for purposes of learning game development with Unity3D
 - [ ] Take Turn
 #### Chess Pieces
 Code/Scripts
-- [x] Horse
+- [x] Knight
 - [ ] Pawn
 - [ ] Bishop
-- [ ] Rook
+- [x] Rook
 - [ ] Queen
 - [ ] King
 
 Model
+(Incomplete) Only added temporary models
 - [ ] Horse
 - [ ] Pawn
 - [ ] Bishop
