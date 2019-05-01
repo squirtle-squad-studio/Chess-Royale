@@ -27,13 +27,10 @@ public class ColorChanger : MonoBehaviour
         {
             case color.yellow:
                 return "Yellow";
-                break;
             case color.blue:
                 return "Blue";
-                break;
             case color.green:
                 return "Green";
-                break;
             case color.red:
                 return "Red";
             default:

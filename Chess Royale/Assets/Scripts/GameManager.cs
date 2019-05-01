@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bool check = false;
         cursor = new Vector2Int(0,0);
         chessBoard = new ChessBoard(selectionBoard, chessPieces);
 

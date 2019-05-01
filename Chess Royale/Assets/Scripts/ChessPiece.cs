@@ -2,11 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChessPiece : MonoBehaviour
+/**
+ * Steps on making a new chess piece class
+ * 1) Your new class must inherit from this class.
+ * 2) Override Start() 
+ *  I) Your first line should include base.Start(); (so that pieces starts based on gameObject.transform).
+ *  II) Override name with your desired name (Will need this to identify pieces).
+ *  III) Add locations of where your piece can move in Vector2Int.
+ * 3) To Add special moves specific to your chess piece, add a new switch case in GeneratePossibleMoves(ChessPiece).
+ */
+
+public abstract class ChessPiece : MonoBehaviour
 {
-    public string name;
+    public new string name;
     public Vector2Int location;
-    public List<Vector2Int> moves;
+    public List<Vector2Int> moves; // Default moves (Can pass through other pieces)
 
     protected virtual void Start()
     {

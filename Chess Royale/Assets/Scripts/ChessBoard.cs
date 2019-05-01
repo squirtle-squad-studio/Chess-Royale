@@ -44,7 +44,6 @@ public class ChessBoard
         {
             case "Knight":
                 return possibleMoves;
-                break;
             case "Rook":
                 List<Vector2Int> temp = new List<Vector2Int>();
                 // Code to detect pieces
@@ -119,7 +118,6 @@ public class ChessBoard
                 }
 
                 return temp;
-                break;
             default:
                 return null;
         }
