@@ -5,7 +5,7 @@ Simple Chess game for purposes of learning game development with Unity3D
 ## Progress
 - [x] Chessboard
 - [x] SelectionBoard
-- [ ] Game Logic
+- [x] Game Logic
 - [ ] Chess Pieces
 
 ## Tasks
@@ -19,16 +19,16 @@ Simple Chess game for purposes of learning game development with Unity3D
 #### Game Logic
 - [x] User Input
 - [x] Move Cursor
-- [ ] (Incomplete)Get selected piece and generate possible moves
+- [x] Get selected piece and generate possible moves
 - [ ] Take Turn
 #### Chess Pieces
 Code/Scripts
 - [x] Knight
-- [ ] Pawn
-- [ ] Bishop
+- [x] Pawn
+- [x] Bishop
 - [x] Rook
-- [ ] Queen
-- [ ] King
+- [x] Queen
+- [x] King
 
 Model
 (Incomplete) Only added temporary models
