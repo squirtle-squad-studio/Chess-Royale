@@ -561,6 +561,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6189029340322269944}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &405726501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3336771535961972405, guid: 600a2fd9b4393f94a937123a4a5b6548,
+    type: 3}
+  m_PrefabInstance: {fileID: 1922855189}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &405726503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405726501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b26092ab62d9f945983f63ed5d97f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  location: {x: 0, y: 0}
+  moves: []
 --- !u!114 &419541266 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6290808587477871436, guid: caabdb2ec3c76984987d33b668a2d9d2,
@@ -1092,6 +1113,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6189029340322269944}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &767123986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3336771535961972405, guid: 600a2fd9b4393f94a937123a4a5b6548,
+    type: 3}
+  m_PrefabInstance: {fileID: 666868010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &767123988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767123986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b26092ab62d9f945983f63ed5d97f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  location: {x: 0, y: 0}
+  moves: []
 --- !u!1 &778288879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029339812770839, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -1446,6 +1488,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6189029340322269944}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1186681271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3336771535961972405, guid: 600a2fd9b4393f94a937123a4a5b6548,
+    type: 3}
+  m_PrefabInstance: {fileID: 1870161321}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1186681273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186681271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b26092ab62d9f945983f63ed5d97f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  location: {x: 0, y: 0}
+  moves: []
 --- !u!1001 &1213948767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2442,6 +2505,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6189029340322269944}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1680999657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3336771535961972405, guid: 600a2fd9b4393f94a937123a4a5b6548,
+    type: 3}
+  m_PrefabInstance: {fileID: 1213948767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1680999659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680999657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b26092ab62d9f945983f63ed5d97f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  location: {x: 0, y: 0}
+  moves: []
 --- !u!114 &1681861613 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1957363976174855945, guid: 3b47e30fdeb743848a1e4fdacfe3f2ef,
@@ -3391,7 +3475,7 @@ PrefabInstance:
     - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
         type: 3}
       propertyPath: chessPieces.Array.size
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
         type: 3}
@@ -3752,22 +3836,42 @@ PrefabInstance:
         type: 3}
       propertyPath: chessPieces.Array.data[4]
       value: 
-      objectReference: {fileID: 1389473470}
+      objectReference: {fileID: 1680999659}
     - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
         type: 3}
       propertyPath: chessPieces.Array.data[5]
       value: 
-      objectReference: {fileID: 419541266}
+      objectReference: {fileID: 1186681273}
     - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
         type: 3}
       propertyPath: chessPieces.Array.data[6]
       value: 
-      objectReference: {fileID: 1631717519}
+      objectReference: {fileID: 1389473470}
     - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
         type: 3}
       propertyPath: chessPieces.Array.data[7]
       value: 
+      objectReference: {fileID: 419541266}
+    - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
+        type: 3}
+      propertyPath: chessPieces.Array.data[8]
+      value: 
+      objectReference: {fileID: 1631717519}
+    - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
+        type: 3}
+      propertyPath: chessPieces.Array.data[9]
+      value: 
       objectReference: {fileID: 1526745124}
+    - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
+        type: 3}
+      propertyPath: chessPieces.Array.data[10]
+      value: 
+      objectReference: {fileID: 405726503}
+    - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
+        type: 3}
+      propertyPath: chessPieces.Array.data[11]
+      value: 
+      objectReference: {fileID: 767123988}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 564f30204f68c3e49b6f8ca4fc84986a, type: 3}
 --- !u!1001 &3194281727970383980

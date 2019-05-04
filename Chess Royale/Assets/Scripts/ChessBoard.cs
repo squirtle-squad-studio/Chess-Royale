@@ -19,110 +19,6 @@ public class ChessBoard
         InitiateAndFillChessPieces(cp);
     }
 
-    /*
-     * Use this method to find the possible moves from a given chess piece.
-     */
-    public List<Vector2Int> GeneratePossibleMoves(ChessPiece selectedPiece)
-    {
-        Vector2Int location = selectedPiece.location;
-        List<Vector2Int> moves = selectedPiece.moves;
-        List<Vector2Int> possibleMoves = new List<Vector2Int>();
-        Vector2Int move;
-
-        // Only include moves that are in the bounds of the board
-        for (int i = 0; i < moves.Count; i++)
-        {
-            move = location + moves[i];
-            if (move.x >=0 && move.x < 8 && move.y >= 0 && move.y <8)
-            {
-                possibleMoves.Add(move);
-            }
-        }
-
-        // Specific to pieces
-        switch (selectedPiece.name)
-        {
-            case "Knight":
-                return possibleMoves;
-            case "Rook":
-                List<Vector2Int> temp = new List<Vector2Int>();
-                // Code to detect pieces
-                // As soon as it detects a piece on it's path, it will stop looking for the next
-                for(int i = 1; i < 8; i++)
-                {
-
-                    if (possibleMoves.Contains(new Vector2Int(location.x, location.y + i)))
-                    {
-                        temp.Add(new Vector2Int(location.x, location.y + i));
-
-                    }
-                    else
-                    {
-                        break;
-                    }
-                    if(chessPieces[location.x, location.y + i] != null)
-                    {
-                        break;
-                    }
-                }
-                for (int i = 1; i < 8; i++)
-                {
-
-                    if (possibleMoves.Contains(new Vector2Int(location.x+i, location.y)))
-                    {
-                        temp.Add(new Vector2Int(location.x+i, location.y));
-
-                    }
-                    else
-                    {
-                        break;
-                    }
-                    if (chessPieces[location.x+i, location.y] != null)
-                    {
-                        break;
-                    }
-                }
-                for (int i = 1; i < 8; i++)
-                {
-
-                    if (possibleMoves.Contains(new Vector2Int(location.x, location.y - i)))
-                    {
-                        temp.Add(new Vector2Int(location.x, location.y - i));
-
-                    }
-                    else
-                    {
-                        break;
-                    }
-                    if (chessPieces[location.x, location.y - i] != null)
-                    {
-                        break;
-                    }
-                }
-                for (int i = 1; i < 8; i++)
-                {
-
-                    if (possibleMoves.Contains(new Vector2Int(location.x - i, location.y)))
-                    {
-                        temp.Add(new Vector2Int(location.x - i, location.y));
-
-                    }
-                    else
-                    {
-                        break;
-                    }
-                    if (chessPieces[location.x - i, location.y] != null)
-                    {
-                        break;
-                    }
-                }
-
-                return temp;
-            default:
-                return null;
-        }
-    }
-
     public ChessPiece GetPiece(Vector2Int v)
     {
         UpdateBoard();
@@ -200,7 +96,8 @@ public class ChessBoard
     {
         if (selectedPiece != null)
         {
-            List<Vector2Int> possibleMoves = GeneratePossibleMoves(selectedPiece);
+            // List<Vector2Int> possibleMoves = GeneratePossibleMoves(selectedPiece);
+            List<Vector2Int> possibleMoves = selectedPiece.GeneratePossibleMoves(this);
             foreach (Vector2Int element in possibleMoves)
             {
                 // Sets the color of SelectionBoard

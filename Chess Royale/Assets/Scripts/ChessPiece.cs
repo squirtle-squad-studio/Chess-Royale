@@ -23,6 +23,20 @@ public abstract class ChessPiece : MonoBehaviour
         location = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z * -1);
     }
 
+    public virtual List<Vector2Int> GeneratePossibleMoves(ChessBoard cb)
+    {
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
+        foreach (Vector2Int element in moves)
+        {
+            if (location.x + element.x >= 0 && location.y + element.y >= 0
+                && location.x + element.x < 8 && location.y + element.y < 8)
+            {
+                possibleMoves.Add(element+location);
+            }
+        }
+        return possibleMoves;
+    }
+
     public void Move(Vector2Int cursor)
     {
         if (location != cursor)
