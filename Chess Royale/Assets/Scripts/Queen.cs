@@ -18,10 +18,8 @@ public class Queen : ChessPiece
             moves.Add(new Vector2Int(-i, 0));
             moves.Add(new Vector2Int(i, 0));
         }
-
-
-
     }
+
     public override List<Vector2Int> GeneratePossibleMoves(ChessBoard cb)
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
@@ -41,6 +39,10 @@ public class Queen : ChessPiece
 
             if (cb.GetPiece(guess) != null)
             {
+                if(this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -59,6 +61,10 @@ public class Queen : ChessPiece
 
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -77,6 +83,10 @@ public class Queen : ChessPiece
 
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -95,9 +105,14 @@ public class Queen : ChessPiece
 
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
+
         for (int i = 1; i < 8; i++)
         {
             guess.x = location.x - i;
@@ -109,6 +124,10 @@ public class Queen : ChessPiece
             possibleMoves.Add(guess);
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -124,6 +143,10 @@ public class Queen : ChessPiece
             possibleMoves.Add(guess);
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -139,6 +162,10 @@ public class Queen : ChessPiece
             possibleMoves.Add(guess);
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -154,15 +181,13 @@ public class Queen : ChessPiece
             possibleMoves.Add(guess);
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
         return possibleMoves;
-    }
-
-        // Update is called once per frame
-        void Update()
-    {
-        
     }
 }

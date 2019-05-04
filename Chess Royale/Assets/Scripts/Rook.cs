@@ -35,6 +35,10 @@ public class Rook : ChessPiece
             possibleMoves.Add(guess);
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -50,6 +54,10 @@ public class Rook : ChessPiece
             possibleMoves.Add(guess);
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -65,6 +73,10 @@ public class Rook : ChessPiece
             possibleMoves.Add(guess);
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -80,6 +92,10 @@ public class Rook : ChessPiece
             possibleMoves.Add(guess);
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }

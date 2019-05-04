@@ -36,6 +36,10 @@ public class Bishop : ChessPiece
 
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -54,6 +58,10 @@ public class Bishop : ChessPiece
 
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -72,6 +80,10 @@ public class Bishop : ChessPiece
 
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }
@@ -90,6 +102,10 @@ public class Bishop : ChessPiece
 
             if (cb.GetPiece(guess) != null)
             {
+                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Remove(guess);
+                }
                 break;
             }
         }

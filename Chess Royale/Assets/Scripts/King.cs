@@ -9,20 +9,14 @@ public class King : ChessPiece
     {
         base.Start();
         name = "King";
-        int i = 1;
-        moves.Add(new Vector2Int(i,i));
-        moves.Add(new Vector2Int(-i, i));
-        moves.Add(new Vector2Int(i, -i));
-        moves.Add(new Vector2Int(-i, -i));
-        moves.Add(new Vector2Int(0, i));
-        moves.Add(new Vector2Int(-i, 0));
-        moves.Add(new Vector2Int(0, -i));
-        moves.Add(new Vector2Int(i, 0));
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        moves.Add(new Vector2Int(1,1));
+        moves.Add(new Vector2Int(-1, 1));
+        moves.Add(new Vector2Int(1, -1));
+        moves.Add(new Vector2Int(-1, -1));
+        moves.Add(new Vector2Int(0, 1));
+        moves.Add(new Vector2Int(-1, 0));
+        moves.Add(new Vector2Int(0, -1));
+        moves.Add(new Vector2Int(1, 0));
     }
 }
