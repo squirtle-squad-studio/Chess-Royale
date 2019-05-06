@@ -26,7 +26,6 @@ Simple Chess game for purposes of learning game development with Unity3D
 - [ ] Checkmate
 
 #### Chess Pieces
-Code/Scripts
 - [x] Movements
 - [ ] Special Movements
 
