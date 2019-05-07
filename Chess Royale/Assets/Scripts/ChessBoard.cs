@@ -38,12 +38,12 @@ public class ChessBoard
         {
             if(chessPieces[v.x, v.y].isBlack == true)
             {
-                chessPieces[v.x, v.y].transform.position = new Vector3(-1 * BlackCapturedPieces.Count, 0, 2);
+                chessPieces[v.x, v.y].transform.position = new Vector3(BlackCapturedPieces.Count, 0, -9);
                 BlackCapturedPieces.Add(chessPieces[v.x, v.y]);
             }
             else
             {
-                chessPieces[v.x, v.y].transform.position = new Vector3(BlackCapturedPieces.Count, 0, -9);
+                chessPieces[v.x, v.y].transform.position = new Vector3(WhiteCapturedPieces.Count, 0, 2);
                 WhiteCapturedPieces.Add(chessPieces[v.x, v.y]);
             }
             listOfChessPieces.Remove(chessPieces[v.x, v.y]);
