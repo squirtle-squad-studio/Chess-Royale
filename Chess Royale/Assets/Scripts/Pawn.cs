@@ -4,21 +4,7 @@ using UnityEngine;
 
 public class Pawn : ChessPiece
 {
-    protected override void Start()
-    {
-        base.Start();
-        name = "Pawn";
-        if(isBlack)
-        {
-            moves.Add(new Vector2Int(0,1));
-        }
-        else
-        {
-            moves.Add(new Vector2Int(0, -1));
-        }
-    }
-
-    public override List<Vector2Int> GeneratePossibleMoves(ChessBoard cb)
+    public override List<Vector2Int> GeneratePossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
         Vector2Int guessLeft = new Vector2Int();
