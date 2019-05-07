@@ -11,9 +11,15 @@ public class ChessBoard
     private GameObject[,] selectionBoardHelper; // selectionBoard but in 2D array
     private ColorChanger[,] selectionBoardColorArray; // selectionBoard but in 2D array
 
+    public List<ChessPiece> BlackCapturedPieces { get; }
+    public List<ChessPiece> WhiteCapturedPieces { get; }
+
     public ChessBoard(List<GameObject> mySelectionBoard, List<ChessPiece> cp)
     {
         selectionBoard = mySelectionBoard;
+        BlackCapturedPieces = new List<ChessPiece>();
+        WhiteCapturedPieces = new List<ChessPiece>();
+
         InitiateSelectionBoardHelper();
         InitiateSelectionBoardColorArray();
         InitiateAndFillChessPieces(cp);
@@ -25,6 +31,26 @@ public class ChessBoard
         UpdateBoard();
         return chessPieces[v.x, v.y];
     }
+
+    public void RemovePieceAt(Vector2Int v)
+    {
+        if(chessPieces[v.x, v.y] != null)
+        {
+            if(chessPieces[v.x, v.y].isBlack == true)
+            {
+                chessPieces[v.x, v.y].transform.position = new Vector3(-1 * BlackCapturedPieces.Count, 0, 2);
+                BlackCapturedPieces.Add(chessPieces[v.x, v.y]);
+            }
+            else
+            {
+                chessPieces[v.x, v.y].transform.position = new Vector3(BlackCapturedPieces.Count, 0, -9);
+                WhiteCapturedPieces.Add(chessPieces[v.x, v.y]);
+            }
+            listOfChessPieces.Remove(chessPieces[v.x, v.y]);
+            chessPieces[v.x, v.y] = null; // Just to be safe (Maybe this is needed)
+        }
+    }
+
 
     //-----------------------------------------------------------------------
     // Methods below are for initializing Variables
