@@ -4,23 +4,7 @@ using UnityEngine;
 
 public class Queen : ChessPiece
 {
-    // Start is called before the first frame update
-    protected override void Start()
-    {
-        base.Start();
-        name = "Queen";
-        for(int i = -7; i < 8; i++)
-        {
-            moves.Add(new Vector2Int(i, i));
-            moves.Add(new Vector2Int(-i, i));
-            moves.Add(new Vector2Int(0, i));
-            moves.Add(new Vector2Int(0, -i));
-            moves.Add(new Vector2Int(-i, 0));
-            moves.Add(new Vector2Int(i, 0));
-        }
-    }
-
-    public override List<Vector2Int> GeneratePossibleMoves(ChessBoard cb)
+    public override List<Vector2Int> GeneratePossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
         Vector2Int guess = new Vector2Int();

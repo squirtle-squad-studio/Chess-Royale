@@ -17,6 +17,7 @@ public class ChessBoard
         InitiateSelectionBoardHelper();
         InitiateSelectionBoardColorArray();
         InitiateAndFillChessPieces(cp);
+        InitializePiecesToReference();
     }
 
     public ChessPiece GetPiece(Vector2Int v)
@@ -71,6 +72,14 @@ public class ChessBoard
         }
     }
 
+    private void InitializePiecesToReference()
+    {
+        foreach(ChessPiece element in listOfChessPieces)
+        {
+            element.SetChessBoard(this);
+        }
+    }
+
     private void UpdateBoard()
     {
         for (int row = 0; row < 8; row++)
@@ -96,8 +105,10 @@ public class ChessBoard
     {
         if (selectedPiece != null)
         {
-            // List<Vector2Int> possibleMoves = GeneratePossibleMoves(selectedPiece);
-            List<Vector2Int> possibleMoves = selectedPiece.GeneratePossibleMoves(this);
+            List<Vector2Int> possibleMoves = selectedPiece.GeneratePossibleMoves();
+
+            SetTileToGreenAt(selectedPiece.location);
+            if (possibleMoves == null) return;
             foreach (Vector2Int element in possibleMoves)
             {
                 // Sets the color of SelectionBoard
@@ -107,11 +118,9 @@ public class ChessBoard
                 }
                 else
                 {
-                    // So far any pieces will be red, but in the future we should not include friendly meaning
                     SetTileToRedAt(element);
                 }
             }
-            SetTileToGreenAt(selectedPiece.location);
         }
     }
 

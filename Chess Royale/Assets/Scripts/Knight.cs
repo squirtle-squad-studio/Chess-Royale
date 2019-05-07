@@ -4,18 +4,95 @@ using UnityEngine;
 
 public class Knight : ChessPiece
 {
-    protected override void Start()
+    public override List<Vector2Int> GeneratePossibleMoves()
     {
-        base.Start();
-        name = "Knight";
-        moves.Add(new Vector2Int(-1, 2));
-        moves.Add(new Vector2Int(-1, -2));
-        moves.Add(new Vector2Int(1, 2));
-        moves.Add(new Vector2Int(1, -2));
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
+        Vector2Int guess = new Vector2Int();
 
-        moves.Add(new Vector2Int(-2, 1));
-        moves.Add(new Vector2Int(-2, -1));
-        moves.Add(new Vector2Int(2, 1));
-        moves.Add(new Vector2Int(2, -1));
+        guess.x = location.x - 1;
+        if(guess.x >= 0 && guess.x < 8)
+        {
+            guess.y = location.y + 2;
+            if (guess.y >= 0 && guess.y < 8)
+            {
+                if(cb.GetPiece(guess) == null || isBlack != cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Add(guess);
+                }
+            }
+            guess.y = location.y - 2;
+            if (guess.y >= 0 && guess.y < 8)
+            {
+                if (cb.GetPiece(guess) == null || isBlack != cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Add(guess);
+                }
+            }
+        }
+
+        guess.x = location.x + 1;
+        if (guess.x >= 0 && guess.x < 8)
+        {
+            guess.y = location.y + 2;
+            if (guess.y >= 0 && guess.y < 8)
+            {
+                if (cb.GetPiece(guess) == null || isBlack != cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Add(guess);
+                }
+            }
+            guess.y = location.y - 2;
+            if (guess.y >= 0 && guess.y < 8)
+            {
+                if (cb.GetPiece(guess) == null || isBlack != cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Add(guess);
+                }
+            }
+        }
+
+        guess.x = location.x - 2;
+        if (guess.x >= 0 && guess.x < 8)
+        {
+            guess.y = location.y + 1;
+            if (guess.y >= 0 && guess.y < 8)
+            {
+                if (cb.GetPiece(guess) == null || isBlack != cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Add(guess);
+                }
+            }
+            guess.y = location.y - 1;
+            if (guess.y >= 0 && guess.y < 8)
+            {
+                if (cb.GetPiece(guess) == null || isBlack != cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Add(guess);
+                }
+            }
+        }
+
+        guess.x = location.x + 2;
+        if (guess.x >= 0 && guess.x < 8)
+        {
+            guess.y = location.y + 1;
+            if (guess.y >= 0 && guess.y < 8)
+            {
+                if (cb.GetPiece(guess) == null || isBlack != cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Add(guess);
+                }
+            }
+            guess.y = location.y - 1;
+            if (guess.y >= 0 && guess.y < 8)
+            {
+                if (cb.GetPiece(guess) == null || isBlack != cb.GetPiece(guess).isBlack)
+                {
+                    possibleMoves.Add(guess);
+                }
+            }
+        }
+
+        return possibleMoves;
     }
 }

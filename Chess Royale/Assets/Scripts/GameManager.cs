@@ -57,8 +57,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-
-                if (selectedPiece.GeneratePossibleMoves(chessBoard).Contains(cursor))
+                if (selectedPiece.GeneratePossibleMoves() != null && selectedPiece.GeneratePossibleMoves().Contains(cursor))
                 {
                     selectedPiece.Move(cursor);
                 }

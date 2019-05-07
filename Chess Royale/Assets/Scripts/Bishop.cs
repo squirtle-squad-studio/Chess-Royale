@@ -4,20 +4,7 @@ using UnityEngine;
 
 public class Bishop : ChessPiece
 {
-    protected override void Start()
-    {
-        base.Start();
-        name = "Bishop";
-
-        for(int i = -7; i < 8; i++)
-        {
-            moves.Add(new Vector2Int(i,i));
-            moves.Add(new Vector2Int(-i, i));
-        }
-
-    }
-
-    public override List<Vector2Int> GeneratePossibleMoves(ChessBoard cb)
+    public override List<Vector2Int> GeneratePossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
         Vector2Int guess = new Vector2Int();
