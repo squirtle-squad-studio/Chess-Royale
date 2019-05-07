@@ -14,6 +14,12 @@ public class Pawn : ChessPiece
 
         if (isBlack)
         {
+            // Starting pawn can jump 2 spaces
+            if (location.y == 1) {
+                Vector2Int guessStart = new Vector2Int(location.x, location.y + 2);
+                possibleMoves.Add(guessStart);
+            }
+
             guessLeft.x = location.x - 1;
             guessLeft.y = location.y + 1;
 
@@ -24,6 +30,12 @@ public class Pawn : ChessPiece
         }
         else
         {
+            // Starting pawn can jump 2 spaces
+            if (location.y == 6) {
+                Vector2Int guessStart = new Vector2Int(location.x, location.y - 2);
+                possibleMoves.Add(guessStart);
+            }
+
             guessLeft.x = location.x - 1;
             guessLeft.y = location.y - 1;
 
