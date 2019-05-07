@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private Vector2Int cursor; // Location where cursor is
     private ChessPiece selectedPiece;
 
+    private bool isBlackTurn;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,8 @@ public class GameManager : MonoBehaviour
         chessBoard = new ChessBoard(selectionBoard, chessPieces);
 
         chessBoard.ClearSelectionBoard(); 
-        chessBoard.SetTileToYellowAt(cursor); 
+        chessBoard.SetTileToYellowAt(cursor);
+        isBlackTurn = false;
     }
 
     // Update is called once per frame
@@ -56,11 +58,17 @@ public class GameManager : MonoBehaviour
                 }
             }
             else
-            {
+            { 
+                // This is when we have try to move our selectedPiece to a square
                 if (selectedPiece.GeneratePossibleMoves() != null && selectedPiece.GeneratePossibleMoves().Contains(cursor))
                 {
-                    selectedPiece.Move(cursor);
+                    if(selectedPiece.isBlack == isBlackTurn)
+                    {
+                        selectedPiece.Move(cursor);
+                        isBlackTurn = !isBlackTurn;
+                    }
                 }
+                // Deselects the piece and clears possible moves
                 selectedPiece = null;
                 chessBoard.ClearSelectionBoard();
             }
