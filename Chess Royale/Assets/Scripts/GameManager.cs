@@ -13,7 +13,11 @@ public class GameManager : MonoBehaviour
     private Vector2Int cursor; // Location where cursor is
     private ChessPiece selectedPiece;
 
+    // Turned Based
     private bool isBlackTurn;
+
+    // UI
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -35,10 +39,15 @@ public class GameManager : MonoBehaviour
 
     private void GraphicsUpdate()
     {
+        // ChessBoard
         chessBoard.DisplayPossibleMoveFromSelectedPiece(selectedPiece);
         chessBoard.DeactivateTileAt(prevCursor);
         chessBoard.SetTileToYellowAt(cursor);
 
+        // Camera
+        UpdateCamera();
+
+        // Cursor
         prevCursor = cursor; // Updates the prevCursor
     }
 
@@ -113,6 +122,23 @@ public class GameManager : MonoBehaviour
             {
                 cursor.x += 1;
             }
+        }
+    }
+    private void UpdateCamera()
+    {
+        if(cam == null)
+        {
+            return;
+        }
+        if(isBlackTurn)
+        {
+            cam.gameObject.transform.position = new Vector3(4,10,2);
+            cam.gameObject.transform.rotation = Quaternion.Euler(60,180,0);
+        }
+        else
+        {
+            cam.gameObject.transform.position = new Vector3(4, 10, -10);
+            cam.gameObject.transform.rotation = Quaternion.Euler(60, 0, 0);
         }
     }
 

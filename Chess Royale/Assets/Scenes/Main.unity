@@ -210,10 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1001 &93000084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -495,10 +493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e61fc811b11ba540b3b98fd40fa47d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!135 &342794301
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -607,10 +603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b26092ab62d9f945983f63ed5d97f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!114 &419541266 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6290808587477871436, guid: caabdb2ec3c76984987d33b668a2d9d2,
@@ -1009,10 +1003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1001 &666868010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1106,10 +1098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d478cebb40d63074581acd8b9b3d2fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1 &704403168 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029339940346904, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -1209,10 +1199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d478cebb40d63074581acd8b9b3d2fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1 &767123986 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3336771535961972405, guid: 600a2fd9b4393f94a937123a4a5b6548,
@@ -1231,10 +1219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b26092ab62d9f945983f63ed5d97f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1 &778288879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029339812770839, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -1265,10 +1251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29ce1b1e15a9514a9ae25305247ecb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1 &827274335 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029340067282599, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -1454,10 +1438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1001 &933885863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1676,10 +1658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1 &1184177127 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3670109846082301106, guid: 4f08a80ccdd2cae42b59fec487de8cac,
@@ -1698,10 +1678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1 &1186681271 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3336771535961972405, guid: 600a2fd9b4393f94a937123a4a5b6548,
@@ -1720,10 +1698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b26092ab62d9f945983f63ed5d97f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1001 &1213948767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2400,10 +2376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1 &1488182699 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029339658639187, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -2494,10 +2468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1 &1580332354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029339549466554, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -2671,10 +2643,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1 &1630271903 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3670109846082301106, guid: 4f08a80ccdd2cae42b59fec487de8cac,
@@ -2693,10 +2663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!114 &1631717519 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1957363976174855945, guid: 3b47e30fdeb743848a1e4fdacfe3f2ef,
@@ -2727,10 +2695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1001 &1655239410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2897,10 +2863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1 &1673484014 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029338703092758, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -2925,10 +2889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b26092ab62d9f945983f63ed5d97f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!114 &1681861613 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1957363976174855945, guid: 3b47e30fdeb743848a1e4fdacfe3f2ef,
@@ -3046,10 +3008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1001 &1747267706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3220,10 +3180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c26bc308f9a4a4bb82e219b4c0f03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!136 &1775358852
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3488,10 +3446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1 &1873124670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029338768512966, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -3597,10 +3553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1 &1948867911 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029338911365055, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -3774,10 +3728,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1 &2070285361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029339091633865, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -3884,10 +3836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2018df35e83d374387747e16a25ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 1
-  moves: []
 --- !u!1 &2102149909
 GameObject:
   m_ObjectHideFlags: 0
@@ -3936,10 +3886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29ce1b1e15a9514a9ae25305247ecb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   location: {x: 0, y: 0}
   isBlack: 0
-  moves: []
 --- !u!1 &2140683287 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189029339040397039, guid: c870d1ece16530648be92ddbe7e7567f,
@@ -4518,6 +4466,11 @@ PrefabInstance:
       propertyPath: chessPieces.Array.data[31]
       value: 
       objectReference: {fileID: 926539634}
+    - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2076820591}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 564f30204f68c3e49b6f8ca4fc84986a, type: 3}
 --- !u!1001 &3194281727970383980
