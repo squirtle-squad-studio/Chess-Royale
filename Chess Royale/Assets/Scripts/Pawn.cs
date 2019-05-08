@@ -14,12 +14,6 @@ public class Pawn : ChessPiece
 
         if (isBlack)
         {
-            // Starting pawn can jump 2 spaces
-            if (location.y == 1) {
-                Vector2Int guessStart = new Vector2Int(location.x, location.y + 2);
-                possibleMoves.Add(guessStart);
-            }
-
             guessLeft.x = location.x - 1;
             guessLeft.y = location.y + 1;
 
@@ -27,15 +21,20 @@ public class Pawn : ChessPiece
 
             guessRight.x = location.x + 1;
             guessRight.y = location.y + 1;
+
+            // Starting pawn can jump 2 spaces
+            if (location.y == 1)
+            {
+                Vector2Int guessStart = new Vector2Int(location.x, location.y + 2);
+                if (cb.GetPiece(guessMiddle) == null && cb.GetPiece(guessStart) == null)
+                {
+                    possibleMoves.Add(guessStart);
+                }
+            }
+
         }
         else
         {
-            // Starting pawn can jump 2 spaces
-            if (location.y == 6) {
-                Vector2Int guessStart = new Vector2Int(location.x, location.y - 2);
-                possibleMoves.Add(guessStart);
-            }
-
             guessLeft.x = location.x - 1;
             guessLeft.y = location.y - 1;
 
@@ -43,6 +42,16 @@ public class Pawn : ChessPiece
 
             guessRight.x = location.x + 1;
             guessRight.y = location.y - 1;
+
+            // Starting pawn can jump 2 spaces
+            if (location.y == 6)
+            {
+                Vector2Int guessStart = new Vector2Int(location.x, location.y - 2);
+                if (cb.GetPiece(guessMiddle) == null && cb.GetPiece(guessStart) == null)
+                {
+                    possibleMoves.Add(guessStart);
+                }
+            }
         }
 
         if (guessLeft.x >= 0 && guessLeft.x < 8 && guessLeft.y >= 0 && guessLeft.y < 8
