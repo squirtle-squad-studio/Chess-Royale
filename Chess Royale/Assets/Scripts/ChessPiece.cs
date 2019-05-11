@@ -51,4 +51,31 @@ public abstract class ChessPiece : MonoBehaviour
         }
 
     }
+
+    /**
+     * Checks if the v relative to the current location is within the chess boundary
+     */
+    protected bool IsWithinBorderBound(Vector2Int v)
+    {
+        if(v.x >= 0 && v.x < 8
+            && v.y >= 0 && v.y < 8)
+        {
+            return true;
+        }
+        return false;
+    }
+    protected bool IsWithinBorderBound(int x, int y)
+    {
+        if (x >= 0 && x < 8
+            && y >= 0 && y < 8)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    protected bool IsSameColorAs(ChessPiece element)
+    {
+        return isBlack == element.isBlack;
+    }
 }

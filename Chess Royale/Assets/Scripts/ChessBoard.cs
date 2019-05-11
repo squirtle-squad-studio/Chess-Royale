@@ -32,6 +32,12 @@ public class ChessBoard
         return chessPieces[v.x, v.y];
     }
 
+    public ChessPiece GetPiece(int x, int y)
+    {
+        UpdateBoard();
+        return chessPieces[x, y];
+    }
+
     public void RemovePieceAt(Vector2Int v)
     {
         if(chessPieces[v.x, v.y] != null)
@@ -50,7 +56,24 @@ public class ChessBoard
             chessPieces[v.x, v.y] = null; // Just to be safe (Maybe this is needed)
         }
     }
-
+    public void RemovePieceAt(int x, int y)
+    {
+        if (chessPieces[x, y] != null)
+        {
+            if (chessPieces[x, y].isBlack == true)
+            {
+                chessPieces[x, y].transform.position = new Vector3(BlackCapturedPieces.Count, 0, -9);
+                BlackCapturedPieces.Add(chessPieces[x, y]);
+            }
+            else
+            {
+                chessPieces[x, y].transform.position = new Vector3(WhiteCapturedPieces.Count, 0, 2);
+                WhiteCapturedPieces.Add(chessPieces[x, y]);
+            }
+            listOfChessPieces.Remove(chessPieces[x, y]);
+            chessPieces[x, y] = null; // Just to be safe (Maybe this is needed)
+        }
+    }
 
     //-----------------------------------------------------------------------
     // Methods below are for initializing Variables

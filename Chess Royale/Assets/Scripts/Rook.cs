@@ -7,80 +7,116 @@ public class Rook : ChessPiece
     public override List<Vector2Int> GeneratePossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
+        List<Vector2Int> temp;
+
+        temp = RookMoves(true, true);
+        if (temp != null)
+        {
+            foreach(Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+        temp = RookMoves(false, true);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+        temp = RookMoves(true, false);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+        temp = RookMoves(false, false);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+
+        return possibleMoves;
+    }
+
+    /**
+     * isPositive is the positive or negative direction
+     * isXDirection is the X axis or Y axis
+     */
+    private List<Vector2Int> RookMoves(bool isPositive, bool isXDirection)
+    {
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
         Vector2Int guess = new Vector2Int();
 
-        for(int i = 1; i < 8; i++)
+        if(isXDirection)
         {
-            guess.x = location.x - i;
             guess.y = location.y;
-            if(guess.x < 0 || guess.y < 0 || guess.x >7 || guess.y > 7)
-            {
-                break;
-            }
-            possibleMoves.Add(guess);
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
-                {
-                    possibleMoves.Remove(guess);
-                }
-                break;
-            }
         }
-
-        for (int i = 1; i < 8; i++)
-        {
-            guess.x = location.x + i;
-            guess.y = location.y;
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
-            {
-                break;
-            }
-            possibleMoves.Add(guess);
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
-                {
-                    possibleMoves.Remove(guess);
-                }
-                break;
-            }
-        }
-
-        for (int i = 1; i < 8; i++)
+        else
         {
             guess.x = location.x;
-            guess.y = location.y - i;
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
-            {
-                break;
-            }
-            possibleMoves.Add(guess);
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
-                {
-                    possibleMoves.Remove(guess);
-                }
-                break;
-            }
         }
 
         for (int i = 1; i < 8; i++)
         {
-            guess.x = location.x;
-            guess.y = location.y + i;
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
+            if (isPositive)
             {
-                break;
-            }
-            possibleMoves.Add(guess);
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                if(isXDirection)
                 {
-                    possibleMoves.Remove(guess);
+                    guess.x = location.x + i;
                 }
+                else
+                {
+                    guess.y = location.y + i;
+                }
+            }
+            else
+            {
+                if (isXDirection)
+                {
+                    guess.x = location.x - i;
+                }
+                else
+                {
+                    guess.y = location.y - i;
+                }
+            }
+
+
+            /*
+             * Logic as we take the next step
+             */
+            if (IsWithinBorderBound(guess))
+            {
+                if (cb.GetPiece(guess) == null)
+                {
+                    possibleMoves.Add(guess);
+                }
+                else
+                {
+                    if (IsSameColorAs(cb.GetPiece(guess)))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        possibleMoves.Add(guess);
+                        break;
+                    }
+                }
+            }
+            else
+            {
                 break;
             }
         }
