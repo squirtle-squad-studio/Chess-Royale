@@ -7,169 +7,210 @@ public class Queen : ChessPiece
     public override List<Vector2Int> GeneratePossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
+        List<Vector2Int> temp = new List<Vector2Int>();
+
+        temp = QueenMoves(false, false, false);
+        if(temp != null)
+        {
+            foreach(Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+        temp = QueenMoves(false, false, true);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+        temp = QueenMoves(false, true, false);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+        temp = QueenMoves(false, true, true);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+
+        temp = QueenMoves(true, false, false);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+        temp = QueenMoves(true, false, true);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+        temp = QueenMoves(true, true, false);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+
+        temp = QueenMoves(true, true, true);
+        if (temp != null)
+        {
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Add(element);
+            }
+        }
+        return possibleMoves;
+    }
+
+    /**
+     * if (isRook) -> RookMoves(isPositive, isXDirection)
+     * a = isPositive, b = isXDirection
+     * if (!isRook) -> BishopMoves(isRight, isUp)
+     * a = isRight, b = isUp
+     */
+    private List<Vector2Int> QueenMoves(bool isRook, bool a, bool b)
+    {
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
         Vector2Int guess = new Vector2Int();
 
-        for (int i = 1; i < 8; i++)
+        if (isRook)
         {
-            guess.x = location.x + i;
-            guess.y = location.y + i;
 
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
+            if (b)
             {
-                break;
+                guess.y = location.y;
+            }
+            else
+            {
+                guess.x = location.x;
             }
 
-            possibleMoves.Add(guess);
-
-            if (cb.GetPiece(guess) != null)
+            for (int i = 1; i < 8; i++)
             {
-                if(this.isBlack == cb.GetPiece(guess).isBlack)
+                if (a)
                 {
-                    possibleMoves.Remove(guess);
+                    if (b)
+                    {
+                        guess.x = location.x + i;
+                    }
+                    else
+                    {
+                        guess.y = location.y + i;
+                    }
                 }
-                break;
+                else
+                {
+                    if (b)
+                    {
+                        guess.x = location.x - i;
+                    }
+                    else
+                    {
+                        guess.y = location.y - i;
+                    }
+                }
+
+
+                /*
+                 * Logic as we take the next step
+                 */
+                if (IsWithinBorderBound(guess))
+                {
+                    if (cb.GetPiece(guess) == null)
+                    {
+                        possibleMoves.Add(guess);
+                    }
+                    else
+                    {
+                        if (IsSameColorAs(cb.GetPiece(guess)))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            possibleMoves.Add(guess);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    break;
+                }
             }
         }
-
-        for (int i = 1; i < 8; i++)
+        else // Bishop
         {
-            guess.x = location.x - i;
-            guess.y = location.y + i;
 
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
+            for (int i = 1; i < 8; i++)
             {
-                break;
-            }
-
-            possibleMoves.Add(guess);
-
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                if (a)
                 {
-                    possibleMoves.Remove(guess);
+                    guess.x = location.x + i;
                 }
-                break;
-            }
-        }
-
-        for (int i = 1; i < 8; i++)
-        {
-            guess.x = location.x - i;
-            guess.y = location.y - i;
-
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
-            {
-                break;
-            }
-
-            possibleMoves.Add(guess);
-
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                else
                 {
-                    possibleMoves.Remove(guess);
+                    guess.x = location.x - i;
                 }
-                break;
-            }
-        }
 
-        for (int i = 1; i < 8; i++)
-        {
-            guess.x = location.x + i;
-            guess.y = location.y - i;
-
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
-            {
-                break;
-            }
-
-            possibleMoves.Add(guess);
-
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                if (b)
                 {
-                    possibleMoves.Remove(guess);
+                    guess.y = location.y + i;
                 }
-                break;
-            }
-        }
-
-        for (int i = 1; i < 8; i++)
-        {
-            guess.x = location.x - i;
-            guess.y = location.y;
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
-            {
-                break;
-            }
-            possibleMoves.Add(guess);
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                else
                 {
-                    possibleMoves.Remove(guess);
+                    guess.y = location.y - i;
                 }
-                break;
-            }
-        }
 
-        for (int i = 1; i < 8; i++)
-        {
-            guess.x = location.x + i;
-            guess.y = location.y;
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
-            {
-                break;
-            }
-            possibleMoves.Add(guess);
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
-                {
-                    possibleMoves.Remove(guess);
-                }
-                break;
-            }
-        }
 
-        for (int i = 1; i < 8; i++)
-        {
-            guess.x = location.x;
-            guess.y = location.y - i;
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
-            {
-                break;
-            }
-            possibleMoves.Add(guess);
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                /*
+                 * Logic as we take the next step
+                 */
+                if (IsWithinBorderBound(guess))
                 {
-                    possibleMoves.Remove(guess);
+                    if (cb.GetPiece(guess) == null)
+                    {
+                        possibleMoves.Add(guess);
+                    }
+                    else
+                    {
+                        if (IsSameColorAs(cb.GetPiece(guess)))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            possibleMoves.Add(guess);
+                            break;
+                        }
+                    }
                 }
-                break;
-            }
-        }
-
-        for (int i = 1; i < 8; i++)
-        {
-            guess.x = location.x;
-            guess.y = location.y + i;
-            if (guess.x < 0 || guess.y < 0 || guess.x > 7 || guess.y > 7)
-            {
-                break;
-            }
-            possibleMoves.Add(guess);
-            if (cb.GetPiece(guess) != null)
-            {
-                if (this.isBlack == cb.GetPiece(guess).isBlack)
+                else
                 {
-                    possibleMoves.Remove(guess);
+                    break;
                 }
-                break;
             }
         }
         return possibleMoves;

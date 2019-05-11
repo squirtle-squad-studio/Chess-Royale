@@ -4,79 +4,82 @@ using UnityEngine;
 
 public class Pawn : ChessPiece
 {
+    private bool specialMove; // Jumps twice
+    protected override void Start()
+    {
+        base.Start();
+        specialMove = true;
+    }
     public override List<Vector2Int> GeneratePossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
-        Vector2Int guessLeft = new Vector2Int();
-        Vector2Int guessMiddle = new Vector2Int();
-        Vector2Int guessRight = new Vector2Int();
-        guessMiddle.x = location.x;
+        Vector2Int temp = new Vector2Int();
+        temp.x = location.x;
 
         if (isBlack)
         {
-            guessLeft.x = location.x - 1;
-            guessLeft.y = location.y + 1;
-
-            guessMiddle.y = location.y + 1;
-
-            guessRight.x = location.x + 1;
-            guessRight.y = location.y + 1;
-
-            // Starting pawn can jump 2 spaces
-            if (location.y == 1)
-            {
-                Vector2Int guessStart = new Vector2Int(location.x, location.y + 2);
-                if (cb.GetPiece(guessMiddle) == null && cb.GetPiece(guessStart) == null)
-                {
-                    possibleMoves.Add(guessStart);
-                }
-            }
-
+            temp.y = location.y + 1;
         }
         else
         {
-            guessLeft.x = location.x - 1;
-            guessLeft.y = location.y - 1;
+            temp.y = location.y - 1;
+        }
 
-            guessMiddle.y = location.y - 1;
+        // Middle
+        if (IsWithinBorderBound(temp) && cb.GetPiece(temp) == null)
+        {
+            possibleMoves.Add(temp);
 
-            guessRight.x = location.x + 1;
-            guessRight.y = location.y - 1;
-
-            // Starting pawn can jump 2 spaces
-            if (location.y == 6)
+            // Special Move
+            if (specialMove)
             {
-                Vector2Int guessStart = new Vector2Int(location.x, location.y - 2);
-                if (cb.GetPiece(guessMiddle) == null && cb.GetPiece(guessStart) == null)
+                if (isBlack)
                 {
-                    possibleMoves.Add(guessStart);
+                    temp.y += 1;
+                }
+                else
+                {
+                    temp.y -= 1;
+                }
+                if (IsWithinBorderBound(temp) && cb.GetPiece(temp) == null)
+                {
+                    possibleMoves.Add(temp);
+                }
+
+                // Resets it to 1 squares foward
+                if (isBlack)
+                {
+                    temp.y -= 1;
+                }
+                else
+                {
+                    temp.y += 1;
                 }
             }
         }
 
-        if (guessLeft.x >= 0 && guessLeft.x < 8 && guessLeft.y >= 0 && guessLeft.y < 8
-            && cb.GetPiece(guessLeft) != null)
+        // Right
+        temp.x += 1;
+        if (IsWithinBorderBound(temp) && cb.GetPiece(temp) != null && !IsSameColorAs(cb.GetPiece(temp)))
         {
-            if(isBlack != cb.GetPiece(guessLeft).isBlack)
-            {
-                possibleMoves.Add(guessLeft);
-            }
+            possibleMoves.Add(temp);
         }
 
-        if (guessMiddle.y >= 0 && guessMiddle.y < 8 && cb.GetPiece(guessMiddle) == null)
+        //Left
+        temp.x -= 2;
+        if (IsWithinBorderBound(temp) && cb.GetPiece(temp) != null && !IsSameColorAs(cb.GetPiece(temp)))
         {
-            possibleMoves.Add(guessMiddle);
+            possibleMoves.Add(temp);
         }
-
-        if (guessRight.x >= 0 && guessRight.x < 8 && guessRight.y >= 0 && guessRight.y < 8
-             && cb.GetPiece(guessRight) != null)
-        {
-            if (isBlack != cb.GetPiece(guessRight).isBlack)
-            {
-                possibleMoves.Add(guessRight);
-            }
-        }
-
         return possibleMoves;
+    }
+
+    public override void Move(Vector2Int cursor)
+    {
+        base.Move(cursor);
+        if(specialMove == true)
+        {
+            specialMove = false;
+        }
     }
 }
