@@ -67,7 +67,6 @@ public class Knight : ChessPiece
      */
     private Vector2Int KnightMoves(bool isRight, bool isUp, bool isFirstMoveSet)
     {
-        Vector2Int possibleMove;
         Vector2Int guess = new Vector2Int();
 
         if(isRight)
