@@ -13,13 +13,11 @@ public abstract class ChessPiece : MonoBehaviour
 {
     public Vector2Int location;
     public bool isBlack;
-    private bool isCaptured;
 
     protected ChessBoard cb;
 
     protected virtual void Start()
     {
-        isCaptured = false;
         location = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z * -1);
     }
 
