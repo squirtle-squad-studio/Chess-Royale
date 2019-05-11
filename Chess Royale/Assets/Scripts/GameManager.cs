@@ -15,9 +15,7 @@ public class GameManager : MonoBehaviour
 
     // Turned Based
     private bool isBlackTurn;
-
-    // UI
-    public Camera cam;
+    public BoardRotator boardRotator;
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +41,6 @@ public class GameManager : MonoBehaviour
         chessBoard.DisplayPossibleMoveFromSelectedPiece(selectedPiece);
         chessBoard.DeactivateTileAt(prevCursor);
         chessBoard.SetTileToYellowAt(cursor);
-
-        // Camera
-        UpdateCamera();
 
         // Cursor
         prevCursor = cursor; // Updates the prevCursor
@@ -75,6 +70,7 @@ public class GameManager : MonoBehaviour
                     {
                         selectedPiece.Move(cursor);
                         isBlackTurn = !isBlackTurn;
+                        boardRotator.Rotate();
                     }
                 }
                 // Deselects the piece and clears possible moves
@@ -122,23 +118,6 @@ public class GameManager : MonoBehaviour
             {
                 cursor.x += 1;
             }
-        }
-    }
-    private void UpdateCamera()
-    {
-        if(cam == null)
-        {
-            return;
-        }
-        if(isBlackTurn)
-        {
-            cam.gameObject.transform.position = new Vector3(4,10,2);
-            cam.gameObject.transform.rotation = Quaternion.Euler(60,180,0);
-        }
-        else
-        {
-            cam.gameObject.transform.position = new Vector3(4, 10, -10);
-            cam.gameObject.transform.rotation = Quaternion.Euler(60, 0, 0);
         }
     }
 
