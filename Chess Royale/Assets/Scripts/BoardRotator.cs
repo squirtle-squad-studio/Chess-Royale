@@ -28,5 +28,6 @@ public class BoardRotator : MonoBehaviour
             whitePieces.transform.rotation = Quaternion.Euler(0, 0, 0);
             BlackPieces.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+        isNormalRotation = !isNormalRotation;
     }
 }
