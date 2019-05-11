@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     private bool isBlackTurn;
 
+    public CameraMovement cam;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +68,9 @@ public class GameManager : MonoBehaviour
                     {
                         selectedPiece.Move(cursor);
                         isBlackTurn = !isBlackTurn;
+
+                        // Rotation
+                        cam.NextPlayerCam();
                     }
                 }
                 // Deselects the piece and clears possible moves
