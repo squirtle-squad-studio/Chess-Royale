@@ -3925,7 +3925,7 @@ MonoBehaviour:
   blackEndPosition: {fileID: 1357839502}
   rotatingPoint: {fileID: 24218770}
   speed: 1
-  journeyTime: 4
+  journeyTime: 2
 --- !u!1 &2102062287 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3670109846082301106, guid: 4f08a80ccdd2cae42b59fec487de8cac,

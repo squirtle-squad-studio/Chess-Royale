@@ -93,30 +93,71 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
         {
-            if(cursor.y - 1 >= 0 && cursor.y - 1 < 8)
+            if (isBlackTurn)
             {
-                cursor.y -= 1;
+                if (cursor.y + 1 >= 0 && cursor.y + 1 < 8)
+                {
+                    cursor.y += 1;
+                }
+            }
+            else
+            {
+                if (cursor.y - 1 >= 0 && cursor.y - 1 < 8)
+                {
+                    cursor.y -= 1;
+                }
             }
         }
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            if (cursor.x - 1 >= 0 && cursor.x - 1 < 8)
+            if(isBlackTurn)
             {
-                cursor.x -= 1;
+                if (cursor.x + 1 >= 0 && cursor.x + 1 < 8)
+                {
+                    cursor.x += 1;
+                }
             }
+            else
+            {
+                if (cursor.x - 1 >= 0 && cursor.x - 1 < 8)
+                {
+                    cursor.x -= 1;
+                }
+            }
+
         }
         if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
-            if (cursor.y + 1 >= 0 && cursor.y + 1 < 8)
+            if (isBlackTurn)
             {
-                cursor.y += 1;
+                if (cursor.y - 1 >= 0 && cursor.y - 1 < 8)
+                {
+                    cursor.y -= 1;
+                }
+            }
+            else
+            {
+                if (cursor.y + 1 >= 0 && cursor.y + 1 < 8)
+                {
+                    cursor.y += 1;
+                }
             }
         }
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
-            if (cursor.x + 1 >= 0 && cursor.x + 1 < 8)
+            if (isBlackTurn)
             {
-                cursor.x += 1;
+                if (cursor.x - 1 >= 0 && cursor.x - 1 < 8)
+                {
+                    cursor.x -= 1;
+                }
+            }
+            else
+            {
+                if (cursor.x + 1 >= 0 && cursor.x + 1 < 8)
+                {
+                    cursor.x += 1;
+                }
             }
         }
     }
