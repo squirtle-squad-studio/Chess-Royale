@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Camera Rotation")]
+    public bool isCameraRotation;
+
+    [Header("ChessBoard")]
     public List<GameObject> selectionBoard; // This is a single list taken from a 8x8 board. Advice: please use the helper variable, it's easier.
     public List<ChessPiece> chessPieces;
     private ChessBoard chessBoard;
@@ -70,7 +74,10 @@ public class GameManager : MonoBehaviour
                         isBlackTurn = !isBlackTurn;
 
                         // Rotation
-                        cam.NextPlayerCam();
+                        if(isCameraRotation)
+                        {
+                            cam.NextPlayerCam();
+                        }
                     }
                 }
                 // Deselects the piece and clears possible moves
@@ -93,7 +100,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
         {
-            if (isBlackTurn)
+            if (isBlackTurn && isCameraRotation)
             {
                 if (cursor.y + 1 >= 0 && cursor.y + 1 < 8)
                 {
@@ -110,7 +117,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            if(isBlackTurn)
+            if(isBlackTurn && isCameraRotation)
             {
                 if (cursor.x + 1 >= 0 && cursor.x + 1 < 8)
                 {
@@ -128,7 +135,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
-            if (isBlackTurn)
+            if (isBlackTurn && isCameraRotation)
             {
                 if (cursor.y - 1 >= 0 && cursor.y - 1 < 8)
                 {
@@ -145,7 +152,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
-            if (isBlackTurn)
+            if (isBlackTurn && isCameraRotation)
             {
                 if (cursor.x - 1 >= 0 && cursor.x - 1 < 8)
                 {

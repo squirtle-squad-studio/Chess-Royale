@@ -4579,6 +4579,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2076820593}
+    - target: {fileID: 6235375720712568202, guid: 564f30204f68c3e49b6f8ca4fc84986a,
+        type: 3}
+      propertyPath: isCameraRotation
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 564f30204f68c3e49b6f8ca4fc84986a, type: 3}
 --- !u!1001 &3194281727970383980
