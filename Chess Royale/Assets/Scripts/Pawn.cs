@@ -10,6 +10,27 @@ public class Pawn : ChessPiece
         base.Start();
         specialMove = true;
     }
+    public override List<Vector2Int> GetPossibleMoves()
+    {
+        cb.GetKingAttackers();
+
+        bool temp = specialMove;
+
+        if(isBlack && cb.isBlackKingInCheck)
+        {
+            specialMove = false;
+        }
+        else if(!isBlack && cb.isWhiteKingInCheck)
+        {
+            specialMove = false;
+        }
+
+        List<Vector2Int> possibleMoves = PossibleMoveCheckFilter(GeneratePossibleMoves());
+
+        specialMove = temp;
+
+        return possibleMoves;
+    }
     public override List<Vector2Int> GeneratePossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();

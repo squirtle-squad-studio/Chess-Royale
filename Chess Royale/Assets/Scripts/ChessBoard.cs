@@ -14,16 +14,30 @@ public class ChessBoard
     public List<ChessPiece> BlackCapturedPieces { get; }
     public List<ChessPiece> WhiteCapturedPieces { get; }
 
+    public bool isWhiteKingInCheck { get; private set; }
+    public bool isBlackKingInCheck { get; private set; }
+
+    // King pieces
+    // For location purposes
+    // Used to know if it's check
+    [HideInInspector]public ChessPiece whiteKing;
+    [HideInInspector]public ChessPiece blackKing;
+
     public ChessBoard(List<GameObject> mySelectionBoard, List<ChessPiece> cp)
     {
         selectionBoard = mySelectionBoard;
         BlackCapturedPieces = new List<ChessPiece>();
         WhiteCapturedPieces = new List<ChessPiece>();
 
+        isWhiteKingInCheck = false;
+        isBlackKingInCheck = false;
+
         InitiateSelectionBoardHelper();
         InitiateSelectionBoardColorArray();
         InitiateAndFillChessPieces(cp);
         InitializePiecesToReference();
+
+        FindKings();
     }
 
     public ChessPiece GetPiece(Vector2Int v)
@@ -73,6 +87,43 @@ public class ChessBoard
             listOfChessPieces.Remove(chessPieces[x, y]);
             chessPieces[x, y] = null; // Just to be safe (Maybe this is needed)
         }
+    }
+
+    /**
+     * Updates ChessPiece.kingAttackers
+     * Note: It isn't possible to have both side to be check because you must "uncheck" first
+     */
+    public void GetKingAttackers()
+    {
+        ChessPiece.kingAttackers.Clear();
+        foreach (ChessPiece element in listOfChessPieces)
+        {
+            List<Vector2Int> possibleMoves = element.GeneratePossibleMoves();
+            if (element.isBlack)
+            {
+                if (possibleMoves.Contains(whiteKing.location))
+                {
+                    isWhiteKingInCheck = true;
+                    isBlackKingInCheck = false;
+                    ChessPiece.kingAttackers.Add(element);
+                }
+            }
+            else if (!element.isBlack)
+            {
+                if (possibleMoves.Contains(blackKing.location))
+                {
+                    isBlackKingInCheck = true;
+                    isWhiteKingInCheck = false;
+                    ChessPiece.kingAttackers.Add(element);
+                }
+            }
+        }
+        if(ChessPiece.kingAttackers.Count == 0)
+        {
+            isWhiteKingInCheck = false;
+            isBlackKingInCheck = false;
+        }
+
     }
 
     //-----------------------------------------------------------------------
@@ -144,6 +195,31 @@ public class ChessBoard
         }
     }
 
+    public void FindKings()
+    {
+        foreach (ChessPiece element in listOfChessPieces)
+        {
+            if (element.GetType() == typeof(King))
+            {
+                if (element.isBlack)
+                {
+                    blackKing = element;
+                }
+                else
+                {
+                    whiteKing = element;
+                }
+            }
+        }
+        if (blackKing == null)
+        {
+            Debug.Log("Missing black king");
+        }
+        if (whiteKing == null)
+        {
+            Debug.Log("Missing white king");
+        }
+    }
 
 
     //-----------------------------------------------------------------------
@@ -154,7 +230,8 @@ public class ChessBoard
     {
         if (selectedPiece != null)
         {
-            List<Vector2Int> possibleMoves = selectedPiece.GeneratePossibleMoves();
+            //List<Vector2Int> possibleMoves = selectedPiece.GeneratePossibleMoves();
+            List<Vector2Int> possibleMoves = selectedPiece.GetPossibleMoves();
 
             SetTileToGreenAt(selectedPiece.location);
             if (possibleMoves == null) return;
@@ -170,6 +247,17 @@ public class ChessBoard
                     SetTileToRedAt(element);
                 }
             }
+        }
+    }
+    public void DisplayKingInCheck()
+    {
+        if(isBlackKingInCheck)
+        {
+            SetTileToRedAt(blackKing.location);
+        }
+        if(isWhiteKingInCheck)
+        {
+            SetTileToRedAt(whiteKing.location);
         }
     }
 

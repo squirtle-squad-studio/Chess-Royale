@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class King : ChessPiece
 {
+    //public bool isCheck;
+    //protected override void Start()
+    //{
+    //    base.Start();
+    //    isCheck = false;
+    //}
+
+    public override List<Vector2Int> GetPossibleMoves()
+    {
+        cb.GetKingAttackers();
+        List<Vector2Int> possibleMoves = PossibleMoveCheckFilter(GeneratePossibleMoves());
+        return possibleMoves;
+    }
     public override List<Vector2Int> GeneratePossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();

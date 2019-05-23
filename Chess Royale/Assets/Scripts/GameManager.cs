@@ -35,14 +35,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GraphicsUpdate();
+        //GraphicsUpdate();
         GetInput();
     }
 
     private void GraphicsUpdate()
     {
-        chessBoard.DisplayPossibleMoveFromSelectedPiece(selectedPiece);
         chessBoard.DeactivateTileAt(prevCursor);
+        chessBoard.DisplayPossibleMoveFromSelectedPiece(selectedPiece);
+        chessBoard.DisplayKingInCheck();
         chessBoard.SetTileToYellowAt(cursor);
 
         prevCursor = cursor; // Updates the prevCursor
@@ -66,11 +67,13 @@ public class GameManager : MonoBehaviour
             else
             { 
                 // This is when we have try to move our selectedPiece to a square
-                if (selectedPiece.GeneratePossibleMoves() != null && selectedPiece.GeneratePossibleMoves().Contains(cursor))
-                {
+                //if (selectedPiece.GeneratePossibleMoves() != null && selectedPiece.GeneratePossibleMoves().Contains(cursor))
+                if (selectedPiece.GetPossibleMoves() != null && selectedPiece.GetPossibleMoves().Contains(cursor))
+                    { 
                     if(selectedPiece.isBlack == isBlackTurn)
                     {
                         selectedPiece.Move(cursor);
+                        chessBoard.GetKingAttackers(); // To update/check if king is in check after a piece is moved.
                         isBlackTurn = !isBlackTurn;
 
                         // Rotation
@@ -84,7 +87,7 @@ public class GameManager : MonoBehaviour
                 selectedPiece = null;
                 chessBoard.ClearSelectionBoard();
             }
-
+            GraphicsUpdate();
         }
 
         if (Input.GetKeyUp(KeyCode.Escape))
@@ -114,6 +117,7 @@ public class GameManager : MonoBehaviour
                     cursor.y -= 1;
                 }
             }
+            GraphicsUpdate();
         }
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour
                     cursor.x -= 1;
                 }
             }
-
+            GraphicsUpdate();
         }
         if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
@@ -149,6 +153,7 @@ public class GameManager : MonoBehaviour
                     cursor.y += 1;
                 }
             }
+            GraphicsUpdate();
         }
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
@@ -166,6 +171,7 @@ public class GameManager : MonoBehaviour
                     cursor.x += 1;
                 }
             }
+            GraphicsUpdate();
         }
     }
 

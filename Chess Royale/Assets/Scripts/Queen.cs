@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Queen : ChessPiece
 {
+    public override List<Vector2Int> GetPossibleMoves()
+    {
+        cb.GetKingAttackers();
+        List<Vector2Int> possibleMoves = PossibleMoveCheckFilter( GeneratePossibleMoves());
+        return possibleMoves;
+    }
     public override List<Vector2Int> GeneratePossibleMoves()
     {
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
@@ -81,6 +87,8 @@ public class Queen : ChessPiece
                 possibleMoves.Add(element);
             }
         }
+
+
         return possibleMoves;
     }
 
