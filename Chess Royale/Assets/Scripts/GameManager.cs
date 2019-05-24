@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
                 selectedPiece = null;
                 chessBoard.ClearSelectionBoard();
             }
+            chessBoard.IsGameOver();
             GraphicsUpdate();
         }
 
@@ -182,22 +183,30 @@ public class GameManager : MonoBehaviour
 
     private void UIupdate()
     {
-        if(chessBoard.isWhiteKingInCheck)
-        {
-            uiManager.WhiteKingInCheck();
-        }
-        if (chessBoard.isBlackKingInCheck)
-        {
-            uiManager.BlackKingInCheck();
-        }
-        if(!chessBoard.isBlackKingInCheck && !chessBoard.isWhiteKingInCheck)
-        {
-            uiManager.DeactivateText();
-        }
+        //chessBoard.IsGameOver();
         if(chessBoard.gameOver)
         {
-            uiManager.GameOver();
+            if (chessBoard.gameOver)
+            {
+                uiManager.GameOver();
+            }
         }
+        else
+        {
+            if(chessBoard.isWhiteKingInCheck)
+            {
+                uiManager.WhiteKingInCheck();
+            }
+            if (chessBoard.isBlackKingInCheck)
+            {
+                uiManager.BlackKingInCheck();
+            }
+            if(!chessBoard.isBlackKingInCheck && !chessBoard.isWhiteKingInCheck)
+            {
+                uiManager.DeactivateText();
+            }
+        }
+
     }
 
 }

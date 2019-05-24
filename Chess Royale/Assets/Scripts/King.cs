@@ -13,8 +13,32 @@ public class King : ChessPiece
 
     public override List<Vector2Int> GetPossibleMoves()
     {
+        List<Vector2Int> possibleMoves = GeneratePossibleMoves();
         cb.GetKingAttackers();
-        List<Vector2Int> possibleMoves = PossibleMoveCheckFilter(GeneratePossibleMoves());
+        if(ChessPiece.kingAttackers == null || ChessPiece.kingAttackers.Count == 0) { return possibleMoves; }
+        if (ChessPiece.kingAttackers.Count <= 1 && ChessPiece.kingAttackers[0].isBlack != isBlack)
+        {
+            List<Vector2Int> temp = new List<Vector2Int>();
+            foreach (Vector2Int element in possibleMoves)
+            {
+                foreach (ChessPiece chessP in cb.listOfChessPieces)
+                {
+                    if (chessP.GeneratePossibleMoves().Contains(element) && chessP.isBlack != isBlack)
+                    {
+                        temp.Add(element);
+                    }
+                }
+            }
+            // Removes check moves
+            foreach (Vector2Int element in temp)
+            {
+                possibleMoves.Remove(element);
+            }
+        }
+        else if (ChessPiece.kingAttackers.Count > 1 && ChessPiece.kingAttackers[0].isBlack != isBlack)
+        {
+            return new List<Vector2Int>();
+        }
         return possibleMoves;
     }
     public override List<Vector2Int> GeneratePossibleMoves()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChessBoard
 {
     private List<GameObject> selectionBoard;
-    private List<ChessPiece> listOfChessPieces; // Actual Chess Pieces
+    public List<ChessPiece> listOfChessPieces; // Actual Chess Pieces
     private ChessPiece[,] chessPieces; // Same as listOfChessPieces but with Location of where the pieces are
 
     private GameObject[,] selectionBoardHelper; // selectionBoard but in 2D array
@@ -128,6 +128,45 @@ public class ChessBoard
             isBlackKingInCheck = false;
         }
 
+    }
+
+    public void IsGameOver()
+    {
+        if (whiteKing.GetPossibleMoves() == null) return;
+        if (blackKing.GetPossibleMoves() == null) return;
+        // Checks if black wins
+        if (whiteKing.GetPossibleMoves().Count == 0)
+        {
+            //if (isWhiteKingInCheck) { gameOver = true; return; }
+            foreach(ChessPiece element in listOfChessPieces)
+            {
+                if(element.GetPossibleMoves() == null) { continue; }
+                if(!element.isBlack && element.GetPossibleMoves().Count > 0)
+                {
+                    if(element == whiteKing) { continue; }
+                    gameOver = false;
+                    return;
+                }
+            }
+            gameOver = true;
+            return;
+        }
+        else if(blackKing.GetPossibleMoves().Count == 0)
+        {
+            //if (isBlackKingInCheck) { gameOver = true; return; }
+            foreach (ChessPiece element in listOfChessPieces)
+            {
+                if (element.GetPossibleMoves() == null) { continue; }
+                if (element.isBlack && element.GetPossibleMoves().Count > 0)
+                {
+                    if(element == blackKing) { continue; }
+                    gameOver = false;
+                    return;
+                }
+            }
+            gameOver = true;
+            return;
+        }
     }
 
     //-----------------------------------------------------------------------

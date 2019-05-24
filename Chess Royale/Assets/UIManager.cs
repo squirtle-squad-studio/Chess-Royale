@@ -32,6 +32,6 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameObject.SetActive(true);
+        gameOver.gameObject.SetActive(true);
     }
 }

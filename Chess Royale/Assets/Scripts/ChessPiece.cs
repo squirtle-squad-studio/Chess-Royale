@@ -122,13 +122,13 @@ public abstract class ChessPiece : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("PossibleMoveCheckFilter: Multiple attack on king");
+                        //Debug.Log("PossibleMoveCheckFilter: Multiple attack on king");
                         return null;
                     }
                 }
                 else
                 {
-                    Debug.Log("PossibleMoveCheckFilter: @Param elements are not enemies");
+                    //Debug.Log("PossibleMoveCheckFilter: @Param elements are not enemies");
                     return null;
                 }
             }
