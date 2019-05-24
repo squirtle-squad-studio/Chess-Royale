@@ -117,6 +117,7 @@ public abstract class ChessPiece : MonoBehaviour
                             filteredList.Add(element);
                         }
                         location = currentLocation; // resets the location to where it was
+                        cb.UpdateBoard();
                         return filteredList;
                     }
                     else

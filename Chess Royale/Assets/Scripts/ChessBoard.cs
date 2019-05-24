@@ -180,7 +180,7 @@ public class ChessBoard
         }
     }
 
-    private void UpdateBoard()
+    public void UpdateBoard()
     {
         for (int row = 0; row < 8; row++)
         {
