@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("User Interface")]
+    public UIManager uiManager;
+
     [Header("Camera Rotation")]
     public bool isCameraRotation;
 
@@ -45,6 +48,8 @@ public class GameManager : MonoBehaviour
         chessBoard.DisplayPossibleMoveFromSelectedPiece(selectedPiece);
         chessBoard.DisplayKingInCheck();
         chessBoard.SetTileToYellowAt(cursor);
+
+        UIupdate();
 
         prevCursor = cursor; // Updates the prevCursor
     }
@@ -172,6 +177,26 @@ public class GameManager : MonoBehaviour
                 }
             }
             GraphicsUpdate();
+        }
+    }
+
+    private void UIupdate()
+    {
+        if(chessBoard.isWhiteKingInCheck)
+        {
+            uiManager.WhiteKingInCheck();
+        }
+        if (chessBoard.isBlackKingInCheck)
+        {
+            uiManager.BlackKingInCheck();
+        }
+        if(!chessBoard.isBlackKingInCheck && !chessBoard.isWhiteKingInCheck)
+        {
+            uiManager.DeactivateText();
+        }
+        if(chessBoard.gameOver)
+        {
+            uiManager.GameOver();
         }
     }
 

@@ -16,18 +16,7 @@ public class Pawn : ChessPiece
 
         bool temp = specialMove;
 
-        if(isBlack && cb.isBlackKingInCheck)
-        {
-            specialMove = false;
-        }
-        else if(!isBlack && cb.isWhiteKingInCheck)
-        {
-            specialMove = false;
-        }
-
         List<Vector2Int> possibleMoves = PossibleMoveCheckFilter(GeneratePossibleMoves());
-
-        specialMove = temp;
 
         return possibleMoves;
     }

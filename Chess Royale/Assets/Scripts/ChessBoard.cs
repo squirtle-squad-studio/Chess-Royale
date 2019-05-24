@@ -23,8 +23,12 @@ public class ChessBoard
     [HideInInspector]public ChessPiece whiteKing;
     [HideInInspector]public ChessPiece blackKing;
 
+    public bool gameOver;
+
     public ChessBoard(List<GameObject> mySelectionBoard, List<ChessPiece> cp)
     {
+        gameOver = false;
+
         selectionBoard = mySelectionBoard;
         BlackCapturedPieces = new List<ChessPiece>();
         WhiteCapturedPieces = new List<ChessPiece>();
@@ -99,7 +103,7 @@ public class ChessBoard
         foreach (ChessPiece element in listOfChessPieces)
         {
             List<Vector2Int> possibleMoves = element.GeneratePossibleMoves();
-            if (element.isBlack)
+            if (element.isBlack == true)
             {
                 if (possibleMoves.Contains(whiteKing.location))
                 {
@@ -108,7 +112,7 @@ public class ChessBoard
                     ChessPiece.kingAttackers.Add(element);
                 }
             }
-            else if (!element.isBlack)
+            else if (element.isBlack == false)
             {
                 if (possibleMoves.Contains(blackKing.location))
                 {
@@ -249,7 +253,6 @@ public class ChessBoard
                 }
                 else
                 {
-                    Debug.Log(chessPieces[element.x, element.y]);
                     SetTileToRedAt(element);
                 }
             }
