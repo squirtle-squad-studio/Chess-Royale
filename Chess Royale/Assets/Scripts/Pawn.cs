@@ -14,8 +14,6 @@ public class Pawn : ChessPiece
     {
         cb.GetKingAttackers();
 
-        bool temp = specialMove;
-
         List<Vector2Int> possibleMoves = PossibleMoveCheckFilter(GeneratePossibleMoves());
 
         return possibleMoves;
