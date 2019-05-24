@@ -105,10 +105,15 @@ public abstract class ChessPiece : MonoBehaviour
                         foreach(Vector2Int element in input)
                         {
                             location = element;
-                            if(attacker.GeneratePossibleMoves().Contains(king.location))
+                            if (location == attacker.location)
+                            {
+                                filteredList.Add(element);
+                            }
+                            else if (attacker.GeneratePossibleMoves().Contains(king.location))
                             {
                                 continue;
                             }
+
                             filteredList.Add(element);
                         }
                         location = currentLocation; // resets the location to where it was

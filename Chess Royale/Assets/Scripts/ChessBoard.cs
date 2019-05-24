@@ -230,7 +230,6 @@ public class ChessBoard
     {
         if (selectedPiece != null)
         {
-            //List<Vector2Int> possibleMoves = selectedPiece.GeneratePossibleMoves();
             List<Vector2Int> possibleMoves = selectedPiece.GetPossibleMoves();
 
             SetTileToGreenAt(selectedPiece.location);
@@ -242,8 +241,15 @@ public class ChessBoard
                 {
                     SetTileToBlueAt(element);
                 }
+                else if(chessPieces[element.x,element.y] == selectedPiece)
+                {
+                    Debug.Log(selectedPiece.location);
+                    Debug.Log(element.x.ToString() + element.y.ToString());
+                    Debug.Log("Bug");
+                }
                 else
                 {
+                    Debug.Log(chessPieces[element.x, element.y]);
                     SetTileToRedAt(element);
                 }
             }

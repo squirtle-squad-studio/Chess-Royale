@@ -65,11 +65,11 @@ public class GameManager : MonoBehaviour
                 }
             }
             else
-            { 
+            {
                 // This is when we have try to move our selectedPiece to a square
                 //if (selectedPiece.GeneratePossibleMoves() != null && selectedPiece.GeneratePossibleMoves().Contains(cursor))
                 if (selectedPiece.GetPossibleMoves() != null && selectedPiece.GetPossibleMoves().Contains(cursor))
-                    { 
+                { 
                     if(selectedPiece.isBlack == isBlackTurn)
                     {
                         selectedPiece.Move(cursor);
